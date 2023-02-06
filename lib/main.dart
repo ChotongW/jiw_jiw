@@ -51,7 +51,7 @@ class MyHomePage extends StatelessWidget {
             ),
             Card(
               child: ListTile(
-                title: const Text('Stock'),
+                title: const Text('Inventory'),
                 leading: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.pop(context);
