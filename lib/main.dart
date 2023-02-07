@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:firebase_database/firebase_database.dart';
+// import 'package:firebase_database/firebase_database.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,13 +47,13 @@ class MyHomePage extends StatelessWidget {
               // <-- SEE HERE
               decoration: BoxDecoration(color: const Color(0xff764abc)),
               accountName: Text(
-                "Pinkesh Darji",
+                "jiw jiw local store",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               accountEmail: Text(
-                "pinkesh.earth@gmail.com",
+                "jiwjiw.store@gmail.com",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
