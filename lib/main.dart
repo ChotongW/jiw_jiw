@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -34,11 +43,22 @@ class MyHomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+            const UserAccountsDrawerHeader(
+              // <-- SEE HERE
+              decoration: BoxDecoration(color: const Color(0xff764abc)),
+              accountName: Text(
+                "Pinkesh Darji",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              child: Text('Drawer Header'),
+              accountEmail: Text(
+                "pinkesh.earth@gmail.com",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              currentAccountPicture: FlutterLogo(),
             ),
             Card(
               child: ListTile(
