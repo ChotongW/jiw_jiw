@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:project_mobile_app/LoginAndregister/Sociallogin.dart';
-import 'package:project_mobile_app/UserDetail/profile.dart';
+import 'package:project_mobile_app/models/profile.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -14,7 +14,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _key = GlobalKey<FormState>();
-  Profile profile = Profile(email: '', name: '', password: '', phoneNumber: '');
+  Profile profile = Profile(email: '', password: '');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,21 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Your Name',
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue)),
-                  ),
-                  onSaved: (String? name) {
-                    profile.name = name!;
-                  },
-                ),
-                SizedBox(
-                  height: 10,
-                ),
+
                 TextFormField(
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Please enter Email'),
@@ -62,21 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onSaved: (String? email) {
                       profile.email = email!;
                     }),
-                SizedBox(height: 10),
-                TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Your Phone Number',
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                    ),
-                    onSaved: (String? phoneNumber) {
-                      profile.phoneNumber = phoneNumber!;
-                    }),
-                SizedBox(
-                  height: 10,
-                ),
+
                 TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Your Password',
@@ -102,14 +74,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () {
                       _key.currentState!.save();
                       print(
-                          'email = ${profile.email} password ={profile.password}name = ${profile.name} phoneNumber = ${profile.phoneNumber}');
+                          'email = ${profile.email} password ={profile.password}');
                     },
                   ),
                 ),
                 SizedBox(
                   height: 15,
                 ),
-                SocailLogin()
+                // SocailLogin()
               ],
             )),
       ),
