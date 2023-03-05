@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'LoginAndregister/RegisterScreen.dart';
 import 'firebase_options.dart';
+import 'LoginAndregister/loginScreen.dart';
 // import 'package:firebase_database/firebase_database.dart';
 
 Future<void> main() async {
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: appTitle,
-      home: MyHomePage(title: appTitle),
+      home: RegisterScreen(),
     );
   }
 }
