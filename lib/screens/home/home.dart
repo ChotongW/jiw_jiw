@@ -20,7 +20,8 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width * 0.15,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-          await _auth.signOut();
+          var res = await _auth.signOut();
+          print(res);
         },
         child: Text(
           "Log out",

@@ -29,7 +29,7 @@ class AuthService {
       User? user = userCredential.user;
       return user;
     } on FirebaseAuthException catch (e) {
-      return e;
+      return user;
     }
   }
 
@@ -40,11 +40,11 @@ class AuthService {
               email: _login.email.toString(),
               password: _login.password.toString());
       User? user = userCredential.user;
-      return (user);
+      return user;
     } on FirebaseAuthException catch (e) {
       return user;
     } catch (e) {
-      return e;
+      return user;
     }
   }
 

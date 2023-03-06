@@ -1,4 +1,5 @@
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:project_mobile_app/screens/home/home.dart';
 
 import '../../models/profile.dart';
 import '../../services/auth.dart';
@@ -72,20 +73,48 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   child: ElevatedButton(
                     child: Text('Confirm'),
                     onPressed: () async {
-                      if (_key.currentState!.validate()) {
-                        dynamic result =
-                            await _auth.registerEmailPassword(profile);
-                        if (result.uid == null) {
-                          //null means unsuccessfull authentication
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text(result.code),
-                                );
-                              });
-                        }
+                      _key.currentState!.save();
+                      dynamic result =
+                          await _auth.registerEmailPassword(profile);
+                      if (result.uid == null) {
+                        //null means unsuccessfull authentication
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: Text(result),
+                              );
+                            });
                       }
+                      // else {
+                      //   showDialog(
+                      //       context: context,
+                      //       builder: (context) {
+                      //         return MaterialButton(
+                      //           minWidth:
+                      //               MediaQuery.of(context).size.width * 0.15,
+                      //           onPressed: () {
+                      //             Navigator.pop(context);
+                      //           },
+                      //           child: Center(
+                      //             child: Text(
+                      //               'Ok',
+                      //               textAlign: TextAlign.center,
+                      //             ),
+                      //           ),
+                      //         );
+                      //       });
+                      // }
+                      // else {
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(builder: (context) => MyHomePage()),
+                      //   );
+                      // }
+                      // _key.currentState!.save();
+                      // print(
+                      //     'email = ${profile.email} password = ${profile.password}');
+                      // signIn();
                     },
                   ),
                 ),

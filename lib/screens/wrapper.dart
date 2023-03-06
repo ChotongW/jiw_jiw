@@ -8,9 +8,9 @@ import 'authenticate/handler.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User?>();
+    final user = Provider.of<User?>(context);
     // final user = Provider.of<FirebaseUser?>(context);
-    // print(user?.uid);
+    print(user?.uid);
 
     if (user == null) {
       return Handler();

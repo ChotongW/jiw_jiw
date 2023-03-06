@@ -4,8 +4,11 @@ import '../../models/profile.dart';
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
+import 'register.dart';
+
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final Function? register;
+  const LoginScreen({super.key, this.register});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -51,7 +54,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 10,
                 ),
-
                 TextFormField(
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Please enter Email'),
@@ -68,7 +70,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     onSaved: (String? email) {
                       profile.email = email!;
                     }),
-
                 TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Your Password',
@@ -100,11 +101,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                content: Text(result.code),
+                                content: Text(result),
                               );
                             });
-                      } else {
-                        // print(result.uid);
                       }
                       // _key.currentState!.save();
                       // print(
@@ -116,7 +115,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 15,
                 ),
-                // SocailLogin()
+                MaterialButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.15,
+                  onPressed: () {
+                    // Navigate to a new page
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => RegisterScreen()),
+                    // );
+                    widget.register!();
+                  },
+                  child: Center(
+                    child: Text(
+                      'Register',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                )
               ],
             )),
       ),
