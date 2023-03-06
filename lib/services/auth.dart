@@ -1,43 +1,50 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/profile.dart';
-import '../models/Firebaseuser.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  FirebaseUser? _firebaseUser(User? user) {
-    return user != null ? FirebaseUser(uid: user.uid) : null;
-  }
+  // FirebaseUser? _firebaseUser(User? user) {
+  //   print(user?.uid);
+  //   // if (user != null) {
+  //   //   // print(user.uid);
+  //   //   FirebaseUser fUser = FirebaseUser(uid: user.uid);
+  //   //   print(fUser.getUid());
+  //   //   return fUser;
+  //   // } else {
+  //   //   return null;
+  //   // }
+  //   return user != null ? FirebaseUser(uid: user.uid) : null;
+  // }
 
-  Stream<FirebaseUser?> get user {
-    return _auth.authStateChanges().map(_firebaseUser);
+  Stream<User?> get user {
+    // print(_auth.authStateChanges());
+    return _auth.authStateChanges();
   }
 
   Future signInEmailPassword(Profile _login) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: _login.email.toString(),
-              password: _login.password.toString());
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: _login.email.toString(), password: _login.password.toString());
       User? user = userCredential.user;
-      return _firebaseUser(user);
+      return user;
     } on FirebaseAuthException catch (e) {
-      return FirebaseUser(code: e.code, uid: null);
+      return e;
     }
   }
 
   Future registerEmailPassword(Profile _login) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
               email: _login.email.toString(),
               password: _login.password.toString());
       User? user = userCredential.user;
-      return _firebaseUser(user);
+      return (user);
     } on FirebaseAuthException catch (e) {
-      return FirebaseUser(code: e.code, uid: null);
+      return user;
     } catch (e) {
-      return FirebaseUser(code: e.toString(), uid: null);
+      return e;
     }
   }
 

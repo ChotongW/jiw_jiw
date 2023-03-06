@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             });
                       } else {
-                        print(result.uid);
+                        // print(result.uid);
                       }
                       // _key.currentState!.save();
                       // print(
