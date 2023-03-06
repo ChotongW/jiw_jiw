@@ -6,7 +6,8 @@ import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  final Function? register;
+  const RegisterScreen({super.key, this.register});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -32,7 +33,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   height: 10,
                 ),
-
                 TextFormField(
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Please enter Email'),
@@ -49,7 +49,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onSaved: (String? email) {
                       profile.email = email!;
                     }),
-
                 TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Your Password',
@@ -74,15 +73,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Text('Confirm'),
                     onPressed: () async {
                       _key.currentState!.save();
-                      dynamic result =
-                          await _auth.registerEmailPassword(profile);
-                      if (result.uid == null) {
-                        //null means unsuccessfull authentication
+                      try {
+                        dynamic result =
+                            await _auth.registerEmailPassword(profile);
+                        if (result.uid == null) {
+                          //null means unsuccessfull authentication
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(result),
+                                );
+                              });
+                        }
+                      } catch (e) {
                         showDialog(
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                content: Text(result),
+                                content: Text(e.toString()),
                               );
                             });
                       }
@@ -105,12 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       //         );
                       //       });
                       // }
-                      // else {
-                      //   Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(builder: (context) => MyHomePage()),
-                      //   );
-                      // }
+
                       // _key.currentState!.save();
                       // print(
                       //     'email = ${profile.email} password = ${profile.password}');
@@ -121,7 +125,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   height: 15,
                 ),
-                // SocailLogin()
+                MaterialButton(
+                  minWidth: MediaQuery.of(context).size.width * 0.15,
+                  onPressed: () {
+                    // Navigate to a new page
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => RegisterScreen()),
+                    // );
+                    widget.register!();
+                  },
+                  child: Center(
+                    child: Text(
+                      'Cancel',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               ],
             )),
       ),

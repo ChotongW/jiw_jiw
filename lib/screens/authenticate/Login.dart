@@ -94,17 +94,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text('Sign in'),
                     onPressed: () async {
                       _key.currentState!.save();
-                      dynamic result = await _auth.signInEmailPassword(profile);
-                      if (result.uid == null) {
-                        //null means unsuccessfull authentication
+                      try {
+                        dynamic result =
+                            await _auth.signInEmailPassword(profile);
+                        if (result.uid == null) {
+                          //null means unsuccessfull authentication
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(result),
+                                );
+                              });
+                        }
+                      } catch (e) {
                         showDialog(
                             context: context,
                             builder: (context) {
                               return AlertDialog(
-                                content: Text(result),
+                                content: Text(e.toString()),
                               );
                             });
                       }
+
                       // _key.currentState!.save();
                       // print(
                       //     'email = ${profile.email} password = ${profile.password}');

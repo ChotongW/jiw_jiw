@@ -21,7 +21,7 @@ class _HandlerState extends State<Handler> {
     if (showSignin) {
       return LoginScreen(register: register);
     } else {
-      return RegisterScreen();
+      return RegisterScreen(register: register);
     }
   }
 }
