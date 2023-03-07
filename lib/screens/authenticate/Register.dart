@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:project_mobile_app/models/database.dart';
 import 'package:project_mobile_app/screens/authenticate/Login.dart';
 
 import '../../models/profile.dart';
@@ -18,6 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _key = GlobalKey<FormState>();
   Profile profile = Profile(email: '', password: '');
   final AuthService _auth = AuthService();
+  final DatabaseService _db = DatabaseService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,6 +107,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                               });
                         } else {
+                          _db.write(
+                            userId: result.uid.toString(),
+                            data: {
+                              'userName': profile.userName,
+                              'email': profile.email,
+                            },
+                          );
+
                           await showDialog(
                               context: context,
                               builder: (context) {
