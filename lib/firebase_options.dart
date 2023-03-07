@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '145868170516',
     projectId: 'jiwjiw-34092',
     authDomain: 'jiwjiw-34092.firebaseapp.com',
+    databaseURL: 'https://jiwjiw-34092-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'jiwjiw-34092.appspot.com',
     measurementId: 'G-VYBG5D3QRW',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:145868170516:android:0013e8dc1fa3252cddce01',
     messagingSenderId: '145868170516',
     projectId: 'jiwjiw-34092',
+    databaseURL: 'https://jiwjiw-34092-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'jiwjiw-34092.appspot.com',
   );
 
@@ -66,9 +68,9 @@ class DefaultFirebaseOptions {
     appId: '1:145868170516:ios:ed842875b4de4f75ddce01',
     messagingSenderId: '145868170516',
     projectId: 'jiwjiw-34092',
+    databaseURL: 'https://jiwjiw-34092-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'jiwjiw-34092.appspot.com',
-    iosClientId:
-        '145868170516-9hq1pupe4b19hhu0vh1ce15hqt5v0kr5.apps.googleusercontent.com',
+    iosClientId: '145868170516-9hq1pupe4b19hhu0vh1ce15hqt5v0kr5.apps.googleusercontent.com',
     iosBundleId: 'com.example.projectMobileApp',
   );
 
@@ -77,9 +79,9 @@ class DefaultFirebaseOptions {
     appId: '1:145868170516:ios:ed842875b4de4f75ddce01',
     messagingSenderId: '145868170516',
     projectId: 'jiwjiw-34092',
+    databaseURL: 'https://jiwjiw-34092-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'jiwjiw-34092.appspot.com',
-    iosClientId:
-        '145868170516-9hq1pupe4b19hhu0vh1ce15hqt5v0kr5.apps.googleusercontent.com',
+    iosClientId: '145868170516-9hq1pupe4b19hhu0vh1ce15hqt5v0kr5.apps.googleusercontent.com',
     iosBundleId: 'com.example.projectMobileApp',
   );
 }
