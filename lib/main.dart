@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_mobile_app/inventory.dart';
+import 'package:project_mobile_app/item/list_item.dart';
+import 'package:project_mobile_app/item/text.dart';
 import 'package:project_mobile_app/screens/wrapper.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,7 +55,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: appTitle,
-        home: Stock(),
+        home: itemList(),
       ),
     );
   }
