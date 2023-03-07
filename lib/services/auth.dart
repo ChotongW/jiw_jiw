@@ -1,26 +1,29 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/profile.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // FirebaseUser? _firebaseUser(User? user) {
-  //   print(user?.uid);
-  //   // if (user != null) {
-  //   //   // print(user.uid);
-  //   //   FirebaseUser fUser = FirebaseUser(uid: user.uid);
-  //   //   print(fUser.getUid());
-  //   //   return fUser;
-  //   // } else {
-  //   //   return null;
-  //   // }
-  //   return user != null ? FirebaseUser(uid: user.uid) : null;
+  get currentUser {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      return user;
+    } else {
+      return null;
+    }
+  }
+
+  // StreamSubscription<User?> get user {
+  //   // print(_auth.authStateChanges());
+  //   return _auth.userChanges();
   // }
 
-  Stream<User?> get user {
-    // print(_auth.authStateChanges());
-    return _auth.authStateChanges();
-  }
+  // Stream<User?> get user {
+  //   // print(_auth.authStateChanges());
+  //   return _auth.userChanges();
+  // }
 
   Future signInEmailPassword(Profile _login) async {
     try {
@@ -29,7 +32,8 @@ class AuthService {
       User? user = userCredential.user;
       return user;
     } on FirebaseAuthException catch (e) {
-      return user;
+      // print(e);
+      return e;
     }
   }
 
@@ -40,11 +44,12 @@ class AuthService {
               email: _login.email.toString(),
               password: _login.password.toString());
       User? user = userCredential.user;
+      await user?.updateDisplayName(_login.userName.toString());
       return user;
     } on FirebaseAuthException catch (e) {
-      return user;
+      return e;
     } catch (e) {
-      return user;
+      return e;
     }
   }
 
@@ -52,7 +57,7 @@ class AuthService {
     try {
       return await _auth.signOut();
     } catch (e) {
-      return null;
+      return e;
     }
   }
 }
