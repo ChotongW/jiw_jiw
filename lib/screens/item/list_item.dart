@@ -43,7 +43,15 @@ class _itemListState extends State<itemList> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Text(myProducts[index].toString()),
+                          );
+                        });
+                  },
                   child: Center(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
