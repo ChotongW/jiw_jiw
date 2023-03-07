@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "145868170516",
+    "firebase_url": "https://jiwjiw-34092-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "jiwjiw-34092",
     "storage_bucket": "jiwjiw-34092.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "145868170516-ihjqbbmvbfrbe4g93g4m3hepsmasbt50.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "145868170516-9hq1pupe4b19hhu0vh1ce15hqt5v0kr5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.projectMobileApp"
+              }
             }
           ]
         }
