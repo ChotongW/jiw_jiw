@@ -3,12 +3,12 @@ import 'package:form_field_validator/form_field_validator.dart';
 import '../../models/profile.dart';
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-import 'register.dart';
+import 'Register.dart';
 
 class LoginScreen extends StatefulWidget {
-  final Function? register;
-  const LoginScreen({super.key, this.register});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -97,15 +97,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       try {
                         dynamic result =
                             await _auth.signInEmailPassword(profile);
-                        if (result.uid == null) {
+
+                        if (result is FirebaseAuthException) {
                           //null means unsuccessfull authentication
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  content: Text(result),
+                                  content: Text(result.message.toString()),
                                 );
                               });
+                        } else {
+                          await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text("Login successfully"),
+                                );
+                              });
+                          Navigator.pushReplacementNamed(context, '/home');
                         }
                       } catch (e) {
                         showDialog(
@@ -131,11 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   minWidth: MediaQuery.of(context).size.width * 0.15,
                   onPressed: () {
                     // Navigate to a new page
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => RegisterScreen()),
-                    // );
-                    widget.register!();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterScreen()),
+                    );
                   },
                   child: Center(
                     child: Text(

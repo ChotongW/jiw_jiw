@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:project_mobile_app/screens/home/home.dart';
+import 'package:project_mobile_app/screens/authenticate/Login.dart';
 
 import '../../models/profile.dart';
 import '../../services/auth.dart';
@@ -30,6 +31,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                    validator:
+                        RequiredValidator(errorText: 'Please enter Username'),
+                    decoration: InputDecoration(
+                      hintText: 'Your Username',
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue)),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                    onSaved: (String? userName) {
+                      profile.userName = userName!;
+                    }),
                 SizedBox(
                   height: 10,
                 ),
@@ -76,15 +94,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       try {
                         dynamic result =
                             await _auth.registerEmailPassword(profile);
-                        if (result.uid == null) {
+
+                        if (result is FirebaseAuthException) {
                           //null means unsuccessfull authentication
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
-                                  content: Text(result),
+                                  content: Text(result.message.toString()),
                                 );
                               });
+                        } else {
+                          await showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text("Register successfully"),
+                                );
+                              });
+                          Navigator.pushReplacementNamed(context, '/auth');
                         }
                       } catch (e) {
                         showDialog(
@@ -95,30 +123,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               );
                             });
                       }
-                      // else {
-                      //   showDialog(
-                      //       context: context,
-                      //       builder: (context) {
-                      //         return MaterialButton(
-                      //           minWidth:
-                      //               MediaQuery.of(context).size.width * 0.15,
-                      //           onPressed: () {
-                      //             Navigator.pop(context);
-                      //           },
-                      //           child: Center(
-                      //             child: Text(
-                      //               'Ok',
-                      //               textAlign: TextAlign.center,
-                      //             ),
-                      //           ),
-                      //         );
-                      //       });
-                      // }
-
-                      // _key.currentState!.save();
-                      // print(
-                      //     'email = ${profile.email} password = ${profile.password}');
-                      // signIn();
                     },
                   ),
                 ),
@@ -129,11 +133,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   minWidth: MediaQuery.of(context).size.width * 0.15,
                   onPressed: () {
                     // Navigate to a new page
-                    // Navigator.push(
+                    // Navigator.pop(
                     //   context,
-                    //   MaterialPageRoute(builder: (context) => RegisterScreen()),
+                    //   MaterialPageRoute(builder: (context) => LoginScreen()),
                     // );
-                    widget.register!();
+                    Navigator.pop(context);
                   },
                   child: Center(
                     child: Text(

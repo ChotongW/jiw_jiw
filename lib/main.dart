@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_mobile_app/inventory.dart';
-import 'package:project_mobile_app/screens/wrapper.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/authenticate/Login.dart';
+import 'screens/home/home.dart';
 import 'services/auth.dart';
 // import 'screens/wrapper.dart';
 // import 'package:firebase_database/firebase_database.dart';
@@ -45,15 +46,20 @@ class MyApp extends StatelessWidget {
         //   create: (context) => context.read()<AuthService>().user,
         //   initialData: null,
         // ),
-        StreamProvider<User?>.value(
-          value: AuthService().user,
-          // create: (context) => AuthService().user,
-          initialData: null,
-        ),
+        // StreamProvider<User?>.value(
+        //   value: AuthService().user,
+        //   // create: (context) => AuthService().user,
+        //   initialData: null,
+        // ),
       ],
       child: MaterialApp(
+        initialRoute: '/auth',
+        routes: {
+          '/auth': (context) => LoginScreen(),
+          '/home': (context) => MyHomePage(),
+        },
         title: appTitle,
-        home: Stock(),
+        // home: Wrapper(),
       ),
     );
   }
