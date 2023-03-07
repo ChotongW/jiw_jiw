@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_mobile_app/screens/item/list_item.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/auth': (context) => LoginScreen(),
           '/home': (context) => MyHomePage(),
+          '/catagory': (context) => itemList(),
         },
         title: appTitle,
         // home: Wrapper(),

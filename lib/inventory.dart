@@ -22,7 +22,9 @@ class _StockState extends State<Stock> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/catagory');
+            },
             child: Center(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
