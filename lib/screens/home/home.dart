@@ -1,3 +1,5 @@
+import 'package:project_mobile_app/inventory.dart';
+
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -20,8 +22,20 @@ class _MyHomePageState extends State<MyHomePage> {
         minWidth: MediaQuery.of(context).size.width * 0.15,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
-          var res = await _auth.signOut();
-          print(res);
+          try {
+            await _auth.signOut();
+            Navigator.pushReplacementNamed(context, '/auth');
+          } catch (e) {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text(e.toString()),
+                  );
+                });
+          }
+          // var res = await _auth.signOut();
+          // print(res);
         },
         child: Text(
           "Log out",
@@ -42,17 +56,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const UserAccountsDrawerHeader(
+            UserAccountsDrawerHeader(
               // <-- SEE HERE
               decoration: BoxDecoration(color: const Color(0xff764abc)),
               accountName: Text(
-                "jiw jiw local store",
+                _auth.currentUser.displayName.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               accountEmail: Text(
-                "jiwjiw.store@gmail.com",
+                _auth.currentUser.email.toString(),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -61,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Card(
               child: ListTile(
-                title: const Text('Dash borad'),
+                title: const Text('Dash board'),
                 leading: Icon(Icons.more_vert),
                 onTap: () {
                   Navigator.pop(context, MaterialPageRoute(builder: (context) {
@@ -74,8 +88,12 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ListTile(
                 title: const Text('Inventory'),
                 leading: Icon(Icons.more_vert),
-                onTap: () {
-                  Navigator.pop(context);
+                onTap: () async {
+                  // Navigator.pop(context);
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Stock()),
+                  );
                 },
               ),
             ),
