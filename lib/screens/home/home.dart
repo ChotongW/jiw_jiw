@@ -64,7 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: const Text('Dash borad'),
                 leading: Icon(Icons.more_vert),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, MaterialPageRoute(builder: (context) {
+                    return Stack();
+                  }));
                 },
               ),
             ),

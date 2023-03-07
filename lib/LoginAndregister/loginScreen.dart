@@ -24,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
           email: profile.email, password: profile.password);
       print("signed in ${_credential.user?.email}");
       // print(_credential.runtimeType);
-      if (!context.mounted) return;
+      //if (!context.mounted) return;
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
