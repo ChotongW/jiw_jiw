@@ -49,6 +49,7 @@ class _MyAppBarState extends State<MyAppBar> {
 
     return AppBar(
       title: Text(widget.title),
+      actions: <Widget>[SignOut],
     );
   }
 }
