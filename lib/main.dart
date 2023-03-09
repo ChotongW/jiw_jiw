@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:project_mobile_app/screens/item/drink.dart';
 import 'package:project_mobile_app/screens/item/list_item.dart';
 import 'package:project_mobile_app/screens/item/search.dart';
+import 'package:project_mobile_app/services/addItem.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -63,6 +64,7 @@ class MyApp extends StatelessWidget {
               ),
           '/inventory': (context) => Stock(),
           '/catagory': (context) => itemList(),
+          '/addItem': (context) => AddItem(),
           // '/search': (context) => Search(),
           'Drink': (context) => Drink(),
         },
