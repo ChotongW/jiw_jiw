@@ -57,10 +57,13 @@ class MyApp extends StatelessWidget {
         initialRoute: '/auth',
         routes: {
           '/auth': (context) => LoginScreen(),
-          '/home': (context) => MyHomePage(),
+          '/home': (context) => MyHomePage(
+                title: appTitle,
+              ),
           '/inventory': (context) => Stock(),
           '/catagory': (context) => itemList(),
-          '/search': (context) => Search(),
+          // '/search': (context) => Search(),
+          'Drink': (context) => Search(),
         },
         title: appTitle,
         // home: Wrapper(),
