@@ -3,7 +3,23 @@ import 'package:firebase_database/firebase_database.dart';
 class DatabaseService {
   final FirebaseDatabase database = FirebaseDatabase.instance;
 
-  void write({
+  void writeUser({
+    required String userId,
+    required Map<String, dynamic> data,
+  }) async {
+    try {
+      // print(userId);
+      // print(data);
+      DatabaseReference _databaseReference = database.ref("users/$userId");
+
+      await _databaseReference.set(data);
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
+
+  void writeItem({
     required String userId,
     required Map<String, dynamic> data,
   }) async {
