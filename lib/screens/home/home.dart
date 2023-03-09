@@ -1,6 +1,8 @@
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
+import '../appbar/appbar.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
   final String title;
@@ -43,9 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[SignOut],
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      //   actions: <Widget>[SignOut],
+      // ),
+      appBar: MyAppBar(
+        title: widget.title,
       ),
       body: const Center(
         child: Text('My Page!'),

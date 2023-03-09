@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../services/auth.dart';
 
-class MyAppBar extends StatefulWidget {
-  const MyAppBar({Key? key}) : super(key: key);
-  final String title = "Home Page";
+class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
+  // const MyAppBar({Key? key}) : super(key: key);
+  const MyAppBar({super.key, required this.title});
+  final String title;
   @override
   State<MyAppBar> createState() => _MyAppBarState();
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }
 
 class _MyAppBarState extends State<MyAppBar> {
