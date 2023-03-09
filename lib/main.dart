@@ -5,6 +5,7 @@ import 'package:project_mobile_app/screens/item/search.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
+import 'inventory.dart';
 import 'screens/authenticate/Login.dart';
 import 'screens/home/home.dart';
 import 'services/auth.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/auth': (context) => LoginScreen(),
           '/home': (context) => MyHomePage(),
+          '/inventory': (context) => Stock(),
           '/catagory': (context) => itemList(),
           '/search': (context) => Search(),
         },

@@ -1,5 +1,3 @@
-import 'package:project_mobile_app/inventory.dart';
-
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -90,10 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Icon(Icons.more_vert),
                 onTap: () async {
                   // Navigator.pop(context);
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Stock()),
-                  );
+                  // await Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Stock()),
+                  // );
+                  await Navigator.pushNamed(context, '/inventory');
                 },
               ),
             ),
