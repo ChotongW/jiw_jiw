@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../appbar/appbar.dart';
+
 class itemList extends StatefulWidget {
   const itemList({super.key});
 
@@ -22,8 +24,8 @@ class _itemListState extends State<itemList> {
   ];
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Category '),
+      appBar: MyAppBar(
+        title: "Category",
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
