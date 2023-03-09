@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:project_mobile_app/screens/item/search.dart';
 
 class itemList extends StatefulWidget {
   const itemList({super.key});
@@ -43,14 +44,19 @@ class _itemListState extends State<itemList> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
                 child: InkWell(
-                  onTap: () {
-                    showDialog(
+                  onTap: () async {
+                    await showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
                             content: Text(myProducts[index].toString()),
                           );
                         });
+                    Navigator.pushNamed(context, '/search');
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => Search()),
+                    // );
                   },
                   child: Center(
                       child: Column(
