@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:project_mobile_app/screens/appbar/appbar.dart';
 
 class Stock extends StatefulWidget {
   const Stock({super.key});
@@ -13,8 +14,8 @@ class _StockState extends State<Stock> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Stock'),
+      appBar: MyAppBar(
+        title: "Inventory",
       ),
       body: GridView.count(crossAxisCount: 2, children: [
         Card(
