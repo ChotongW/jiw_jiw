@@ -44,7 +44,7 @@ class _MyAppBarState extends State<MyAppBar> {
     );
 
     return AppBar(
-      title: Text('My App'),
+      title: Text(widget.title),
     );
   }
 }
