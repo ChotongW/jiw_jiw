@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_mobile_app/screens/item/drink.dart';
 import 'package:project_mobile_app/screens/item/list_item.dart';
 import 'package:project_mobile_app/screens/item/search.dart';
 import 'firebase_options.dart';
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
           '/inventory': (context) => Stock(),
           '/catagory': (context) => itemList(),
           // '/search': (context) => Search(),
-          'Drink': (context) => Search(),
+          'Drink': (context) => Drink(),
         },
         title: appTitle,
         // home: Wrapper(),
