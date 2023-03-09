@@ -49,7 +49,8 @@ class _itemListState extends State<itemList> {
                     //         content: Text(myProducts[index].toString()),
                     //       );
                     //     });
-                    Navigator.pushNamed(context, '/search');
+                    Navigator.pushNamed(context, myProducts[index]);
+                    // Navigator.pushNamed(context, 'Drink');
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => Search()),
