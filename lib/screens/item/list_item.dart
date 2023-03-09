@@ -45,13 +45,13 @@ class _itemListState extends State<itemList> {
                     borderRadius: BorderRadius.circular(30)),
                 child: InkWell(
                   onTap: () async {
-                    await showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            content: Text(myProducts[index].toString()),
-                          );
-                        });
+                    // await showDialog(
+                    //     context: context,
+                    //     builder: (context) {
+                    //       return AlertDialog(
+                    //         content: Text(myProducts[index].toString()),
+                    //       );
+                    //     });
                     Navigator.pushNamed(context, '/search');
                     // Navigator.push(
                     //   context,
