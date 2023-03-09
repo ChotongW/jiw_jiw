@@ -107,7 +107,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                               });
                         } else {
-                          _db.write(
+                          _db.writeUser(
                             userId: result.uid.toString(),
                             data: {
                               'userName': profile.userName,
