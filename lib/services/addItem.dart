@@ -16,6 +16,19 @@ class _AddItemState extends State<AddItem> {
   final AuthService _auth = AuthService();
   final DatabaseService _db = DatabaseService();
   final _key = GlobalKey<FormState>();
+  String? itemSelect = 'Drink';
+  List catagory = [
+    'Drink',
+    'Fresh meal',
+    'Snacks',
+    'Frozen & Processed Food',
+    'Pets',
+    'Household Goods',
+    'Shower',
+    'Mom and kids',
+    'Fresh Product',
+  ];
+
   Item item = Item(name: '', category: '', price: 0, quantity: 0);
   @override
   Widget build(BuildContext context) {
@@ -48,18 +61,19 @@ class _AddItemState extends State<AddItem> {
                 SizedBox(
                   height: 10,
                 ),
-                TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'Item category',
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                    ),
-                    keyboardType: TextInputType.name,
-                    onSaved: (String? category) {
-                      item.category = category!;
-                    }),
+                DropdownButton(
+                  value: itemSelect,
+                  items: catagory
+                      .map((itemSelect) => DropdownMenuItem(
+                          value: itemSelect, child: Text(itemSelect)))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      itemSelect = value.toString();
+                    });
+                    print(itemSelect);
+                  },
+                ),
                 SizedBox(
                   height: 10,
                 ),
