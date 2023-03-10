@@ -16,20 +16,28 @@ class _AddItemState extends State<AddItem> {
   final AuthService _auth = AuthService();
   final DatabaseService _db = DatabaseService();
   final _key = GlobalKey<FormState>();
-  String? itemSelect = 'Drink';
+  late String itemSelect = 'drink';
   List catagory = [
-    'Drink',
-    'Fresh meal',
-    'Snacks',
-    'Frozen & Processed Food',
-    'Pets',
-    'Household Goods',
-    'Shower',
-    'Mom and kids',
-    'Fresh Product',
+    'drink',
+    'fresh meal',
+    'snacks',
+    'frozen & processed food',
+    'pets',
+    'household goods',
+    'shower',
+    'mom and kids',
+    'fresh product',
   ];
 
   Item item = Item(name: '', category: '', price: 0, quantity: 0);
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize any state that the widget needs
+    item.category = itemSelect;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,8 +78,9 @@ class _AddItemState extends State<AddItem> {
                   onChanged: (value) {
                     setState(() {
                       itemSelect = value.toString();
+                      item.category = itemSelect;
                     });
-                    print(itemSelect);
+                    // print(itemSelect);
                   },
                 ),
                 SizedBox(
@@ -129,7 +138,8 @@ class _AddItemState extends State<AddItem> {
                           await Navigator.pushReplacementNamed(
                               context, '/auth');
                         } else {
-                          _db.writeItem(
+                          // print(item.category);
+                          bool res = await _db.writeItem(
                             userId: result.uid.toString(),
                             category: item.category,
                             data: {
@@ -138,14 +148,24 @@ class _AddItemState extends State<AddItem> {
                               'quantity': item.quantity,
                             },
                           );
+                          if (res == true) {
+                            await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text("Add item successfully"),
+                                  );
+                                });
+                          } else {
+                            await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text("Item already exists"),
+                                  );
+                                });
+                          }
 
-                          await showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  content: Text("Add item successfully"),
-                                );
-                              });
                           // Navigator.pushReplacementNamed(context, '/auth');
                         }
                       } catch (e) {

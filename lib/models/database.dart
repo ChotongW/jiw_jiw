@@ -14,12 +14,12 @@ class DatabaseService {
 
       await _databaseReference.set(data);
     } catch (e) {
-      print(e);
+      // print(e);
       rethrow;
     }
   }
 
-  void writeItem({
+  Future<bool> writeItem({
     required String userId,
     required String category,
     required Map<String, dynamic> data,
@@ -27,15 +27,24 @@ class DatabaseService {
     try {
       // print(userId);
       // print(data);
+      // print(category);
+      String itemName = data['name'];
       DatabaseReference _databaseReference =
           database.ref("users/$userId/inventory");
       final newItemRef = _databaseReference.child(category).push();
-      var result = checkItemOnce(userId: userId, category: category);
+      bool result = await checkItemOnce(
+          userId: userId, category: category, itemName: itemName);
+      if (result == false) {
+        await newItemRef.update(data);
+        return Future.value(true);
+      } else {
+        return Future.value(false);
+      }
 
       // await newItemRef.update(data);
       // await _databaseReference.update(data);
     } catch (e) {
-      print(e);
+      // print(e);
       rethrow;
     }
   }
@@ -56,9 +65,10 @@ class DatabaseService {
     }
   }
 
-  Future<String> checkItemOnce({
+  Future<bool> checkItemOnce({
     required String userId,
     required String category,
+    required String itemName,
   }) async {
     try {
       DatabaseReference _databaseReference =
@@ -72,19 +82,24 @@ class DatabaseService {
       if (snapshot.exists) {
         Map<String, dynamic> _snapshotValue =
             Map<String, dynamic>.from(snapshot.value as Map);
+        bool itemFound = false;
         _snapshotValue.forEach((key, value) {
           value.forEach((key, value) {
-            print("subKey: $key, subValue: $value");
+            // print(value);
+            if (value == itemName) {
+              // print(value);
+              itemFound = true;
+            }
           });
-          print("Key: $key, Value: $value");
         });
-        // print(_snapshotValue.containsKey('name'));
-        // print(_snapshotValue['name']);
-        return _snapshotValue['name'] ?? '';
+        // print(Future.value(itemFound));
+        return Future.value(itemFound);
       } else {
-        return '';
+        return Future.value(false);
       }
     } catch (e) {
+      // print(e.toString());
+      // return Future.value(true);
       rethrow;
     }
   }
