@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/database.dart';
 import '../models/item.dart';
+import '../screens/appbar/appbar.dart';
 import 'auth.dart';
 
 class AddItem extends StatefulWidget {
@@ -19,8 +20,8 @@ class _AddItemState extends State<AddItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('add item'),
+      appBar: MyAppBar(
+        title: 'add item',
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
@@ -100,7 +101,7 @@ class _AddItemState extends State<AddItem> {
                     onPressed: () async {
                       _key.currentState!.save();
                       try {
-                        dynamic result = await _auth.currentUser();
+                        User? result = await _auth.currentUser;
 
                         if (result == null) {
                           //null means unsuccessfull authentication
@@ -116,9 +117,9 @@ class _AddItemState extends State<AddItem> {
                         } else {
                           _db.writeItem(
                             userId: result.uid.toString(),
+                            category: item.category,
                             data: {
                               'name': item.name,
-                              'category': item.category,
                               'price': item.price,
                               'quantity': item.quantity,
                             },
@@ -134,6 +135,7 @@ class _AddItemState extends State<AddItem> {
                           // Navigator.pushReplacementNamed(context, '/auth');
                         }
                       } catch (e) {
+                        print(e.toString());
                         showDialog(
                             context: context,
                             builder: (context) {
