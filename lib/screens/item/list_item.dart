@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_mobile_app/screens/item/search.dart';
 
 import '../appbar/appbar.dart';
 
@@ -11,16 +12,42 @@ class itemList extends StatefulWidget {
 
 class _itemListState extends State<itemList> {
   @override
-  final List<String> myProducts = [
-    'Drink',
-    'Fresh meal',
-    'Snacks',
-    'Frozen & Processed Food',
-    'Pets',
-    'Household Goods',
-    'Shower',
-    'Mom and kids',
-    'Fresh Product',
+  final List<dynamic> myProducts = [
+    {'drink': 'drink'},
+    {
+      'fresh meal': 'freshMeal',
+    },
+    {
+      'snacks': 'snacks',
+    },
+    {
+      'frozen & processed food': 'frozenFood',
+    },
+    {
+      'pets': 'pets',
+    },
+    {
+      'household goods': 'household',
+    },
+    {
+      'shower': 'shower',
+    },
+    {
+      'mom and kids': 'baby',
+    },
+    {
+      'fresh product': 'fresh',
+    },
+
+    // 'drink',
+    // 'fresh meal',
+    // 'snacks',
+    // 'frozen & processed food',
+    // 'pets',
+    // 'household goods',
+    // 'shower',
+    // 'mom and kids',
+    // 'fresh product',
   ];
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,14 +75,19 @@ class _itemListState extends State<itemList> {
                     //     context: context,
                     //     builder: (context) {
                     //       return AlertDialog(
-                    //         content: Text(myProducts[index].toString()),
+                    //         content: Text(myProducts[index]
+                    //             [myProducts[index].keys.elementAt(0)]),
                     //       );
                     //     });
-                    Navigator.pushNamed(context, myProducts[index]);
+                    Navigator.pushNamed(context,
+                        '/${myProducts[index][myProducts[index].keys.elementAt(0)]}');
+
                     // Navigator.pushNamed(context, 'Drink');
                     // Navigator.push(
                     //   context,
-                    //   MaterialPageRoute(builder: (context) => Search()),
+                    //   MaterialPageRoute(
+                    //       builder: (context) =>
+                    //           Search(category: myProducts[index])),
                     // );
                   },
                   child: Center(
@@ -66,7 +98,7 @@ class _itemListState extends State<itemList> {
                         Icons.search,
                         size: 40,
                       ),
-                      Text(myProducts[index])
+                      Text(myProducts[index].keys.elementAt(0))
                     ],
                   )),
                 ),
