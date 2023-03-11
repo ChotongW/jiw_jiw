@@ -65,8 +65,33 @@ class MyApp extends StatelessWidget {
           '/inventory': (context) => Stock(),
           '/catagory': (context) => itemList(),
           '/addItem': (context) => AddItem(),
-          // '/search': (context) => Search(),
-          'Drink': (context) => Drink(),
+          '/drink': (context) => Search(
+                category: 'drink',
+              ),
+          '/freshMeal': (context) => Search(
+                category: 'freshMeal',
+              ),
+          '/snacks': (context) => Search(
+                category: 'snacks',
+              ),
+          '/frozenFood': (context) => Search(
+                category: 'frozenFood',
+              ),
+          '/pets': (context) => Search(
+                category: 'pets',
+              ),
+          '/household': (context) => Search(
+                category: 'household',
+              ),
+          '/shower': (context) => Search(
+                category: 'shower',
+              ),
+          '/baby': (context) => Search(
+                category: 'baby',
+              ),
+          '/fresh': (context) => Search(
+                category: 'fresh',
+              ),
         },
         title: appTitle,
         // home: Wrapper(),
