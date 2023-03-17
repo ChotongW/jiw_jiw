@@ -59,7 +59,24 @@ class _SearchState extends State<Search> {
     // dynamic res = await _db.itemsbyCategory()
   }
 
-  @override
+  // @override
+  int _counter = 1;
+
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //     print(_counter);
+  //   });
+  // }
+
+  // void _decrementCounter() {
+  //   setState(() {
+  //     if (_counter > 1) {
+  //       _counter--;
+  //     }
+  //   });
+  // }
+
   void initState() {
     super.initState();
     // Initialize state variables here
@@ -93,13 +110,91 @@ class _SearchState extends State<Search> {
               );
             } else {
               return Card(
-                child: ListTile(
-                  title: Text(listData[index]['name']),
-                  subtitle: Text(listData[index]['quantity'].toString()),
-                  trailing: Text(listData[index]['price'].toString()),
-                  onTap: () {},
-                ),
-              );
+                  child: ListTile(
+                title: Wrap(children: [
+                  Text(listData[index]['name']),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(listData[index]['quantity'].toString()),
+                  SizedBox(
+                    width: 1000,
+                  ),
+                ]),
+                //subtitle: Text(listData[index]['quantity'].toString()),
+                trailing: Wrap(children: [
+                  Text(listData[index]['quantity'].toString()),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ]),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      // Create the AlertDialog widget
+                      return StatefulBuilder(
+                          builder: ((context, setState) => AlertDialog(
+                                title: Text(listData[index]['name']),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: <Widget>[
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.remove_circle,
+                                            color: Colors.red,
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              if (_counter > 1) {
+                                                _counter--;
+                                              }
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          'Current value: $_counter',
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.add_circle,
+                                            color: Colors.green,
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              _counter++;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('Cancle'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text('Upadate Item'),
+                                    onPressed: () {
+                                      // Handle Ok button press
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              )));
+                    },
+                  );
+                },
+              ));
             }
           },
         ));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_mobile_app/screens/item/delete.dart';
 import 'package:project_mobile_app/screens/item/drink.dart';
 import 'package:project_mobile_app/screens/item/list_item.dart';
 import 'package:project_mobile_app/screens/item/search.dart';
@@ -92,6 +93,7 @@ class MyApp extends StatelessWidget {
           '/fresh': (context) => Search(
                 category: 'fresh',
               ),
+          '/delete': (context) => delete()
         },
         title: appTitle,
         // home: Wrapper(),

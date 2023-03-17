@@ -61,13 +61,7 @@ class _DrinkState extends State<Drink> {
                   child: Center(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.search,
-                        size: 40,
-                      ),
-                      Text(myProducts[index])
-                    ],
+                    children: [Text(myProducts[index])],
                   )),
                 ),
               );
