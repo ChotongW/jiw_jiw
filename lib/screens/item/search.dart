@@ -96,6 +96,8 @@ class _SearchState extends State<Search> {
           title: Text(widget.category),
         ),
         body: ListView.builder(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
           // itemCount: listData == null ? 1 : listData.length,
           itemCount: listData.length,
           itemBuilder: (context, index) {
