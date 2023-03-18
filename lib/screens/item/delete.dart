@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:project_mobile_app/models/item.dart';
+import 'package:project_mobile_app/screens/item/search.dart';
 
 import '../appbar/appbar.dart';
 
@@ -41,48 +42,58 @@ class _deleteState extends State<delete> {
         appBar: MyAppBar(
           title: 'Delete items',
         ),
-        body: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: _key,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'ItemID',
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue)),
+        body: Column(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: _key,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10,
                     ),
-                    keyboardType: TextInputType.name,
-                    onSaved: (String? name) {
-                      item.name = name!;
-                    }),
-                SizedBox(
-                  height: 10,
+                    TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'item name',
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blue)),
+                        ),
+                        keyboardType: TextInputType.name,
+                        onSaved: (String? name) {
+                          item.name = name!;
+                        }),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    DropdownButton(
+                      value: itemSelect,
+                      items: catagory
+                          .map((itemSelect) => DropdownMenuItem(
+                              value: itemSelect, child: Text(itemSelect)))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          itemSelect = value.toString();
+                          item.category = itemSelect;
+                        });
+                        // print(itemSelect);
+                      },
+                    ),
+                  ],
                 ),
-                DropdownButton(
-                  value: itemSelect,
-                  items: catagory
-                      .map((itemSelect) => DropdownMenuItem(
-                          value: itemSelect, child: Text(itemSelect)))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      itemSelect = value.toString();
-                      item.category = itemSelect;
-                    });
-                    // print(itemSelect);
-                  },
-                ),
-              ],
+              ),
             ),
-          ),
+            Divider(),
+            Expanded(
+              child: Search(
+                category: item.category,
+              ),
+            ),
+          ],
         ));
   }
 }
