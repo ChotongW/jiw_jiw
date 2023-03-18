@@ -73,24 +73,34 @@ class DatabaseService {
   }) async {
     try {
       DatabaseReference _databaseReference =
-          database.ref("users/$userId/inventory");
+          database.ref("users/$userId").child("inventory");
       // final listOfitem = _databaseReference.child(category);
       final filteredItemsRef =
           _databaseReference.orderByChild('category').equalTo(category);
       // print(listOfitem.get());
       final snapshot = await filteredItemsRef.get();
       if (snapshot.exists) {
+        // Map<dynamic, dynamic> data = {};
         Map<String, dynamic> _snapshotValue =
             Map<String, dynamic>.from(snapshot.value as Map);
-        // _snapshotValue.forEach((key, value) {
-        //   print(key);
-        //   value.forEach((key, value) {
-        //     print(value);
+        // _snapshotValue.forEach((key, rows) {
+        //   // print(key);
+        //   // print(value);
+        //   rows.forEach((key, value) {
+        //     if (value == category) {
+        //       // print(rows.runtimeType);
+        //       // print(rows);
+        //       // data.addAll(rows);
+        //       // itemFound = true;
+        //     }
+        //     // print(value);
         //   });
         // });
+        // print(data);
         // return _snapshotValue['name'] ?? '';
         return _snapshotValue;
       } else {
+        // print("null");
         return null;
       }
     } catch (e) {
