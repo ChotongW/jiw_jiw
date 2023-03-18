@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:project_mobile_app/models/item.dart';
-import 'package:project_mobile_app/screens/item/search.dart';
+
+import 'package:project_mobile_app/screens/item/searchForDel.dart';
 
 import '../appbar/appbar.dart';
 
@@ -89,7 +89,7 @@ class _deleteState extends State<delete> {
             ),
             Divider(),
             Expanded(
-              child: Search(
+              child: SearchForDel(
                 category: item.category,
               ),
             ),
