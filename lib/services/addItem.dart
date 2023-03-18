@@ -141,11 +141,12 @@ class _AddItemState extends State<AddItem> {
                           // print(item.category);
                           bool res = await _db.writeItem(
                             userId: result.uid.toString(),
-                            category: item.category,
+                            // category: item.category,
                             data: {
                               'name': item.name,
                               'price': item.price,
                               'quantity': item.quantity,
+                              'category': item.category,
                             },
                           );
                           if (res == true) {
