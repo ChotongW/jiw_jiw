@@ -52,7 +52,9 @@ class _SearchState extends State<Search> {
       });
       // print(listRes);
       setState(() {
+        // print(listRes);
         listData = listRes;
+        // print(listData);
       });
     }
 
@@ -85,11 +87,15 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    if (listData == null) {
+    if (listData.isEmpty) {
       // Show a CircularProgressIndicator if the data is still being fetched
-      return Center(
-        child: CircularProgressIndicator(),
-      );
+      return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.category),
+          ),
+          body: Center(
+            child: Text('no data found'),
+          ));
     }
     return Scaffold(
         appBar: AppBar(
