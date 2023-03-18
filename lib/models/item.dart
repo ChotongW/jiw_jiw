@@ -3,6 +3,7 @@ class Item {
   String category;
   int price;
   int quantity;
+  bool? isFav;
   Item({
     required this.name,
     required this.category,
