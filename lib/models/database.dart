@@ -93,6 +93,32 @@ class DatabaseService {
     }
   }
 
+  Future<bool> updateFav(
+      {required String userId,
+      // required String category,
+      required String itemID,
+      required bool favorite}) async {
+    try {
+      // print(userId);
+      // print(data);
+      // print(category);
+      // String itemName = data['name'];
+      // String category = data['category'];
+      // DatabaseReference _databaseReference =
+      //     database.ref("users/$userId/inventory");
+      DatabaseReference _databaseReference =
+          database.ref("users/$userId/inventory/$itemID");
+
+      await _databaseReference.update({"favorite": favorite});
+      print("Item favorite updated successfully!");
+      return Future.value(true); // return a boolean value to indicate success
+    } catch (e) {
+      // print(e);
+      print("Error updating item favorite: $e");
+      rethrow;
+    }
+  }
+
   Future<Map?> itemsbyCategory({
     required String userId,
     required String category,
