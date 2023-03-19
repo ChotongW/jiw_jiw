@@ -69,29 +69,29 @@ class MyApp extends StatelessWidget {
           '/drink': (context) => Search(
                 category: 'drink',
               ),
-          '/freshMeal': (context) => Search(
-                category: 'freshMeal',
+          '/fresh meal': (context) => Search(
+                category: 'fresh meal',
               ),
           '/snacks': (context) => Search(
                 category: 'snacks',
               ),
-          '/frozenFood': (context) => Search(
-                category: 'frozenFood',
+          '/frozen & processed food': (context) => Search(
+                category: 'frozen & processed food',
               ),
           '/pets': (context) => Search(
                 category: 'pets',
               ),
-          '/household': (context) => Search(
-                category: 'household',
+          '/household goods': (context) => Search(
+                category: 'household goods',
               ),
           '/shower': (context) => Search(
                 category: 'shower',
               ),
-          '/baby': (context) => Search(
-                category: 'baby',
+          '/mom and kids': (context) => Search(
+                category: 'mom and kids',
               ),
-          '/fresh': (context) => Search(
-                category: 'fresh',
+          '/fresh product': (context) => Search(
+                category: 'fresh product',
               ),
           '/delete': (context) => delete()
         },
