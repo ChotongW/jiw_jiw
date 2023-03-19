@@ -11,44 +11,45 @@ class itemList extends StatefulWidget {
 }
 
 class _itemListState extends State<itemList> {
-  @override
-  final List<dynamic> myProducts = [
-    {'drink': 'drink'},
-    {
-      'fresh meal': 'freshMeal',
-    },
-    {
-      'snacks': 'snacks',
-    },
-    {
-      'frozen & processed food': 'frozenFood',
-    },
-    {
-      'pets': 'pets',
-    },
-    {
-      'household goods': 'household',
-    },
-    {
-      'shower': 'shower',
-    },
-    {
-      'mom and kids': 'baby',
-    },
-    {
-      'fresh product': 'fresh',
-    },
-
-    // 'drink',
-    // 'fresh meal',
-    // 'snacks',
-    // 'frozen & processed food',
-    // 'pets',
-    // 'household goods',
-    // 'shower',
-    // 'mom and kids',
-    // 'fresh product',
+  final List<String> myProducts = [
+    'drink',
+    'fresh meal',
+    'snacks',
+    'frozen & processed food',
+    'pets',
+    'household goods',
+    'shower',
+    'mom and kids',
+    'fresh product',
   ];
+  // final List<dynamic> myProducts = [
+  //   {'drink': 'drink'},
+  //   {
+  //     'fresh meal': 'freshMeal',
+  //   },
+  //   {
+  //     'snacks': 'snacks',
+  //   },
+  //   {
+  //     'frozen & processed food': 'frozenFood',
+  //   },
+  //   {
+  //     'pets': 'pets',
+  //   },
+  //   {
+  //     'household goods': 'household',
+  //   },
+  //   {
+  //     'shower': 'shower',
+  //   },
+  //   {
+  //     'mom and kids': 'baby',
+  //   },
+  //   {
+  //     'fresh product': 'fresh',
+  //   },
+  // ];
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
@@ -79,8 +80,10 @@ class _itemListState extends State<itemList> {
                     //             [myProducts[index].keys.elementAt(0)]),
                     //       );
                     //     });
-                    Navigator.pushNamed(context,
-                        '/${myProducts[index][myProducts[index].keys.elementAt(0)]}');
+                    // Navigator.pushNamed(context,
+                    //     '/${myProducts[index][myProducts[index].keys.elementAt(0)]}');
+                    print('/${myProducts[index]}');
+                    Navigator.pushNamed(context, '/${myProducts[index]}');
 
                     // Navigator.pushNamed(context, 'Drink');
                     // Navigator.push(
@@ -98,7 +101,8 @@ class _itemListState extends State<itemList> {
                         Icons.search,
                         size: 40,
                       ),
-                      Text(myProducts[index].keys.elementAt(0))
+                      // Text(myProducts[index].keys.elementAt(0))
+                      Text(myProducts[index])
                     ],
                   )),
                 ),
