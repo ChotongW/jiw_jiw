@@ -6,8 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../services/auth.dart';
 
 List<dynamic> itemmock = [
-  {"name": "banana", "price": "30", "quantity": "10"},
-  {"name": "Apple", "price": "20", "quantity": "10"}
+  {"name": "banana", "price": "30", "quantity": "10", "isFav": false},
+  {"name": "Apple", "price": "20", "quantity": "10", "isFav": false}
 ];
 
 class Search extends StatefulWidget {
@@ -140,6 +140,17 @@ class _SearchState extends State<Search> {
                   SizedBox(
                     width: 10,
                   ),
+                  Icon(
+                    itemmock[index]['isFav'] == null ||
+                            itemmock[index]['isFav'] == false
+                        ? Icons.favorite_border
+                        : Icons.favorite,
+                    color: itemmock[index]['isFav'] == null ||
+                            itemmock[index]['isFav'] == false
+                        ? null
+                        : Colors.red,
+                    size: 18,
+                  )
                 ]),
                 onTap: () {
                   showDialog(
@@ -258,6 +269,24 @@ class _SearchState extends State<Search> {
                                       // Handle Ok button press
                                     },
                                   ),
+                                  TextButton(
+                                      child: Text(
+                                        itemmock[index]['isFav'] == null ||
+                                                itemmock[index]['isFav'] ==
+                                                    false
+                                            ? 'Add to Favorites'
+                                            : 'Unfavorite',
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          itemmock[index]['isFav'] =
+                                              !itemmock[index]['isFav'];
+                                          print(itemmock[index]['isFav']);
+                                        });
+                                        Navigator.of(context).pop();
+                                        Navigator.pushReplacementNamed(
+                                            context, '/${widget.category}');
+                                      }),
                                 ],
                               )));
                     },
