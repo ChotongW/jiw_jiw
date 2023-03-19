@@ -147,6 +147,7 @@ class _AddItemState extends State<AddItem> {
                               'price': item.price,
                               'quantity': item.quantity,
                               'category': item.category,
+                              'favorite': item.isFav
                             },
                           );
                           if (res == true) {
