@@ -60,7 +60,7 @@ class _SearchState extends State<Search> {
       setState(() {
         // print(listRes);
         listData = listRes;
-        print(listData);
+        // print(listData);
       });
     }
 
@@ -117,7 +117,15 @@ class _SearchState extends State<Search> {
               ),
               subtitle: Text("itemID: ${listData[index]['itemID']}"),
               trailing: Wrap(children: [
-                Text(listData[index]['quantity'].toString()),
+                Text(
+                  "QTY:${listData[index]['quantity'].toString()}",
+                  style: TextStyle(
+                    color: Colors.blue, // set text color to blue
+                    fontSize: 14.0, // set font size to 18
+                    fontWeight: FontWeight.w400, // set font weight to bold
+                    fontStyle: FontStyle.normal, // set font style to italic
+                  ),
+                ),
                 SizedBox(
                   width: 10,
                 ),
