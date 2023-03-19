@@ -34,7 +34,7 @@ class DatabaseService {
           database.ref("users/$userId/inventory");
       // final newItemRef = _databaseReference.child(category).push();
       final newItemRef = _databaseReference.push();
-      bool result = await checkItemOnce(
+      bool result = await checkItemByName(
           userId: userId, category: category, itemName: itemName);
       if (result == false) {
         await newItemRef.update(data);
@@ -67,6 +67,32 @@ class DatabaseService {
     }
   }
 
+  Future<bool> updateItem(
+      {required String userId,
+      // required String category,
+      required String itemID,
+      required int quantity}) async {
+    try {
+      // print(userId);
+      // print(data);
+      // print(category);
+      // String itemName = data['name'];
+      // String category = data['category'];
+      // DatabaseReference _databaseReference =
+      //     database.ref("users/$userId/inventory");
+      DatabaseReference _databaseReference =
+          database.ref("users/$userId/inventory/$itemID");
+
+      await _databaseReference.update({"quantity": quantity});
+      print("Item quantity updated successfully!");
+      return Future.value(true); // return a boolean value to indicate success
+    } catch (e) {
+      // print(e);
+      print("Error updating item quantity: $e");
+      rethrow;
+    }
+  }
+
   Future<Map?> itemsbyCategory({
     required String userId,
     required String category,
@@ -83,21 +109,11 @@ class DatabaseService {
         // Map<dynamic, dynamic> data = {};
         Map<String, dynamic> _snapshotValue =
             Map<String, dynamic>.from(snapshot.value as Map);
-        // _snapshotValue.forEach((key, rows) {
-        //   // print(key);
-        //   // print(value);
-        //   rows.forEach((key, value) {
-        //     if (value == category) {
-        //       // print(rows.runtimeType);
-        //       // print(rows);
-        //       // data.addAll(rows);
-        //       // itemFound = true;
-        //     }
-        //     // print(value);
-        //   });
+        // _snapshotValue.forEach((key, value) {
+        //   print(key);
+        //   print(value);
         // });
-        // print(data);
-        // return _snapshotValue['name'] ?? '';
+
         return _snapshotValue;
       } else {
         // print("null");
@@ -108,7 +124,7 @@ class DatabaseService {
     }
   }
 
-  Future<bool> checkItemOnce({
+  Future<bool> checkItemByName({
     required String userId,
     required String category,
     required String itemName,
@@ -128,6 +144,7 @@ class DatabaseService {
         bool itemFound = false;
         _snapshotValue.forEach((key, value) {
           // print(key);
+
           value.forEach((key, value) {
             // print(value);
             if (value == itemName) {
@@ -144,6 +161,81 @@ class DatabaseService {
     } catch (e) {
       // print(e.toString());
       // return Future.value(true);
+      rethrow;
+    }
+  }
+
+  Future<Map?> getItemByID({
+    required String userId,
+    required String itemID,
+  }) async {
+    try {
+      DatabaseReference _databaseReference =
+          database.ref("users/$userId/inventory");
+      // final listOfitem = _databaseReference.child(category);
+      // DataSnapshot data = await listOfitem.get();
+      // print(data.value);
+// Run the query and check if there are any results
+
+      final snapshot = await _databaseReference.get();
+
+      if (snapshot.exists) {
+        Map<String, dynamic> _snapshotValue =
+            Map<String, dynamic>.from(snapshot.value as Map);
+        if (_snapshotValue.containsKey(itemID)) {
+          print(_snapshotValue);
+
+          return _snapshotValue[itemID];
+        } else {
+          return null;
+        }
+      }
+      //   _snapshotValue.forEach((key, value) {
+      //     // print(key);
+      //     if (key == itemID) {
+      //       return
+      //     }
+      //     // value.forEach((key, value) {
+      //     //   // print(value);
+      //     //   if (value == itemName) {
+      //     //     // print(value);
+      //     //     itemFound = true;
+      //     //   }
+      //     // });
+      //   });
+      //   // print(Future.value(itemFound));
+      //   return Future.value(itemFound);
+      // } else {
+      //   return Future.value(false);
+      // }
+    } catch (e) {
+      // print(e.toString());
+      // return Future.value(true);
+      rethrow;
+    }
+  }
+
+  Future<bool> deleteItem({
+    required String userId,
+    // required String category,
+    required String itemID,
+  }) async {
+    try {
+      // print(userId);
+      // print(data);
+      // print(category);
+      // String itemName = data['name'];
+      // String category = data['category'];
+      // DatabaseReference _databaseReference =
+      //     database.ref("users/$userId/inventory");
+      DatabaseReference _databaseReference =
+          database.ref("users/$userId/inventory/$itemID");
+      await _databaseReference.remove();
+      print("Item deleted successfully!");
+      return Future.value(true); // return a boolean value to indicate success
+    } catch (e) {
+      // print(e);
+      print("Error updating item quantity: $e");
       rethrow;
     }
   }
