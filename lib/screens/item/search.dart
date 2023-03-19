@@ -45,11 +45,17 @@ class _SearchState extends State<Search> {
       // print(data.runtimeType);
       data?.forEach((key, value) {
         // print(key);
+        value["itemID"] = key;
         listRes.add(value);
-        value.forEach((key, value) {
-          // print(value);
-        });
+        // value.forEach((key, value) {
+        //   // print(value);
+        // });
       });
+
+      for (var map in listRes) {
+        map["counter"] =
+            map['quantity']; // initialize the counter to 0 for each map
+      }
       // print(listRes);
       setState(() {
         // print(listRes);
@@ -62,7 +68,6 @@ class _SearchState extends State<Search> {
   }
 
   // @override
-  int _counter = 1;
 
   // void _incrementCounter() {
   //   setState(() {
@@ -124,12 +129,12 @@ class _SearchState extends State<Search> {
                   SizedBox(
                     width: 10,
                   ),
-                  Text(listData[index]['quantity'].toString()),
+                  Text(listData[index]['price'].toString()),
                   SizedBox(
                     width: 1000,
                   ),
                 ]),
-                //subtitle: Text(listData[index]['quantity'].toString()),
+                subtitle: Text("itemID: ${listData[index]['itemID']}"),
                 trailing: Wrap(children: [
                   Text(listData[index]['quantity'].toString()),
                   SizedBox(
@@ -158,14 +163,15 @@ class _SearchState extends State<Search> {
                                           ),
                                           onPressed: () {
                                             setState(() {
-                                              if (_counter > 1) {
-                                                _counter--;
+                                              if (listData[index]['counter'] >
+                                                  1) {
+                                                listData[index]['counter']--;
                                               }
                                             });
                                           },
                                         ),
                                         Text(
-                                          'Current value: $_counter',
+                                          'Current value: ${listData[index]['counter']}',
                                           style: TextStyle(fontSize: 20),
                                         ),
                                         IconButton(
@@ -175,7 +181,7 @@ class _SearchState extends State<Search> {
                                           ),
                                           onPressed: () {
                                             setState(() {
-                                              _counter++;
+                                              listData[index]['counter']++;
                                             });
                                           },
                                         ),
@@ -187,14 +193,69 @@ class _SearchState extends State<Search> {
                                   TextButton(
                                     child: Text('Cancle'),
                                     onPressed: () {
+                                      setState(() {
+                                        listData[index]['counter'] =
+                                            listData[index]['quantity'];
+                                      });
+
                                       Navigator.of(context).pop();
                                     },
                                   ),
                                   TextButton(
                                     child: Text('Upadate Item'),
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      User? result = await _auth.currentUser;
+                                      if (result == null) {
+                                        //null means unsuccessfull authentication
+                                        await showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                content: Text(
+                                                    'not found current user!'),
+                                              );
+                                            });
+
+                                        await Navigator.pushReplacementNamed(
+                                            context, '/auth');
+                                      } else {
+                                        bool res = await _db.updateItem(
+                                            userId: result.uid.toString(),
+                                            itemID: listData[index]['itemID'],
+                                            quantity: listData[index]
+                                                ['counter']);
+                                        print(res);
+                                        // if (res == true) {
+                                        //   await showDialog(
+                                        //       context: context,
+                                        //       builder: (context) {
+                                        //         return AlertDialog(
+                                        //           content: Text(
+                                        //               "Add item successfully"),
+                                        //         );
+                                        //       });
+                                        // } else {
+                                        //   await showDialog(
+                                        //       context: context,
+                                        //       builder: (context) {
+                                        //         return AlertDialog(
+                                        //           content: Text(
+                                        //               "Item already exists"),
+                                        //         );
+                                        //       });
+                                        //
+                                        Navigator.of(context).pop();
+
+                                        Navigator.pushReplacementNamed(
+                                            context, '/${widget.category}');
+                                        setState(() {
+                                          for (var map in listData) {
+                                            map.remove(
+                                                "counter"); // remove the "counter" key-value pair from each map
+                                          }
+                                        });
+                                      }
                                       // Handle Ok button press
-                                      Navigator.of(context).pop();
                                     },
                                   ),
                                 ],
