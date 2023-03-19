@@ -5,10 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../services/auth.dart';
 
-List<dynamic> itemmock = [
-  {"name": "banana", "price": "30", "quantity": "10", "isFav": false},
-  {"name": "Apple", "price": "20", "quantity": "10", "isFav": false}
-];
+// List<dynamic> itemmock = [
+//   {"name": "banana", "price": "30", "quantity": "10", "isFav": false},
+//   {"name": "Apple", "price": "20", "quantity": "10", "isFav": false}
+// ];
 
 class Search extends StatefulWidget {
   const Search({super.key, required this.category});
@@ -60,29 +60,12 @@ class _SearchState extends State<Search> {
       setState(() {
         // print(listRes);
         listData = listRes;
-        // print(listData);
+        print(listData);
       });
     }
 
     // dynamic res = await _db.itemsbyCategory()
   }
-
-  // @override
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //     print(_counter);
-  //   });
-  // }
-
-  // void _decrementCounter() {
-  //   setState(() {
-  //     if (_counter > 1) {
-  //       _counter--;
-  //     }
-  //   });
-  // }
 
   void initState() {
     super.initState();
@@ -112,109 +95,169 @@ class _SearchState extends State<Search> {
           // itemCount: listData == null ? 1 : listData.length,
           itemCount: listData.length,
           itemBuilder: (context, index) {
-            if (listData.isEmpty) {
-              return Card(
+            return Card(
                 child: ListTile(
-                  title: Text('no data found'),
-                  subtitle: Text('no data found'),
-                  trailing: Text('no data found'),
-                  onTap: () {},
+              title: Wrap(children: [
+                Text(listData[index]['name']),
+                SizedBox(
+                  width: 10,
                 ),
-              );
-            } else {
-              return Card(
-                  child: ListTile(
-                title: Wrap(children: [
-                  Text(listData[index]['name']),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(listData[index]['price'].toString()),
-                  SizedBox(
-                    width: 1000,
-                  ),
-                ]),
-                subtitle: Text("itemID: ${listData[index]['itemID']}"),
-                trailing: Wrap(children: [
-                  Text(listData[index]['quantity'].toString()),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(
-                    itemmock[index]['isFav'] == null ||
-                            itemmock[index]['isFav'] == false
-                        ? Icons.favorite_border
-                        : Icons.favorite,
-                    color: itemmock[index]['isFav'] == null ||
-                            itemmock[index]['isFav'] == false
-                        ? null
-                        : Colors.red,
-                    size: 18,
-                  )
-                ]),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      // Create the AlertDialog widget
-                      return StatefulBuilder(
-                          builder: ((context, setState) => AlertDialog(
-                                title: Text(listData[index]['name']),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: <Widget>[
-                                        IconButton(
-                                          icon: Icon(
-                                            Icons.remove_circle,
-                                            color: Colors.red,
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (listData[index]['counter'] >
-                                                  1) {
-                                                listData[index]['counter']--;
-                                              }
-                                            });
-                                          },
+                SizedBox(
+                  width: 1000,
+                ),
+              ]),
+              leading: Text(
+                "${listData[index]['price'].toString()} ฿",
+                style: TextStyle(
+                  color: Colors.blue, // set text color to blue
+                  fontSize: 16.0, // set font size to 18
+                  fontWeight: FontWeight.w500, // set font weight to bold
+                  fontStyle: FontStyle.normal, // set font style to italic
+                ),
+              ),
+              subtitle: Text("itemID: ${listData[index]['itemID']}"),
+              trailing: Wrap(children: [
+                Text(listData[index]['quantity'].toString()),
+                SizedBox(
+                  width: 10,
+                ),
+                Icon(
+                  listData[index]['favorite'] == false
+                      ? Icons.favorite_border
+                      : Icons.favorite,
+                  color:
+                      listData[index]['favorite'] == false ? null : Colors.red,
+                  size: 18,
+                )
+              ]),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    // Create the AlertDialog widget
+                    return StatefulBuilder(
+                        builder: ((context, setState) => AlertDialog(
+                              title: Text(listData[index]['name']),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: <Widget>[
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.remove_circle,
+                                          color: Colors.red,
                                         ),
-                                        Text(
-                                          'Current value: ${listData[index]['counter']}',
-                                          style: TextStyle(fontSize: 20),
+                                        onPressed: () {
+                                          setState(() {
+                                            if (listData[index]['counter'] >
+                                                1) {
+                                              listData[index]['counter']--;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      Text(
+                                        'Current value: ${listData[index]['counter']}',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.add_circle,
+                                          color: Colors.green,
                                         ),
-                                        IconButton(
-                                          icon: Icon(
-                                            Icons.add_circle,
-                                            color: Colors.green,
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              listData[index]['counter']++;
-                                            });
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                actions: <Widget>[
-                                  TextButton(
-                                    child: Text('Cancle'),
-                                    onPressed: () {
-                                      setState(() {
-                                        listData[index]['counter'] =
-                                            listData[index]['quantity'];
-                                      });
-
-                                      Navigator.of(context).pop();
-                                    },
+                                        onPressed: () {
+                                          setState(() {
+                                            listData[index]['counter']++;
+                                          });
+                                        },
+                                      ),
+                                    ],
                                   ),
-                                  TextButton(
-                                    child: Text('Upadate Item'),
+                                ],
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: Text('Cancle'),
+                                  onPressed: () {
+                                    setState(() {
+                                      listData[index]['counter'] =
+                                          listData[index]['quantity'];
+                                    });
+
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                TextButton(
+                                  child: Text('Upadate Item'),
+                                  onPressed: () async {
+                                    User? result = await _auth.currentUser;
+                                    if (result == null) {
+                                      //null means unsuccessfull authentication
+                                      await showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              content: Text(
+                                                  'not found current user!'),
+                                            );
+                                          });
+
+                                      await Navigator.pushReplacementNamed(
+                                          context, '/auth');
+                                    } else {
+                                      bool res = await _db.updateItem(
+                                          userId: result.uid.toString(),
+                                          itemID: listData[index]['itemID'],
+                                          quantity: listData[index]['counter']);
+                                      print(res);
+                                      // if (res == true) {
+                                      //   await showDialog(
+                                      //       context: context,
+                                      //       builder: (context) {
+                                      //         return AlertDialog(
+                                      //           content: Text(
+                                      //               "Add item successfully"),
+                                      //         );
+                                      //       });
+                                      // } else {
+                                      //   await showDialog(
+                                      //       context: context,
+                                      //       builder: (context) {
+                                      //         return AlertDialog(
+                                      //           content: Text(
+                                      //               "Item already exists"),
+                                      //         );
+                                      //       });
+                                      //
+                                      Navigator.of(context).pop();
+
+                                      Navigator.pushReplacementNamed(
+                                          context, '/${widget.category}');
+                                      setState(() {
+                                        for (var map in listData) {
+                                          map.remove(
+                                              "counter"); // remove the "counter" key-value pair from each map
+                                        }
+                                      });
+                                    }
+                                    // Handle Ok button press
+                                  },
+                                ),
+                                TextButton(
+                                    child: Text(
+                                      listData[index]['favorite'] == false
+                                          ? 'Favorites'
+                                          : 'Unfavorite',
+                                    ),
                                     onPressed: () async {
+                                      setState(() {
+                                        listData[index]['favorite'] =
+                                            !listData[index]['favorite'];
+                                        print(listData[index]['favorite']);
+                                      });
                                       User? result = await _auth.currentUser;
                                       if (result == null) {
                                         //null means unsuccessfull authentication
@@ -230,70 +273,23 @@ class _SearchState extends State<Search> {
                                         await Navigator.pushReplacementNamed(
                                             context, '/auth');
                                       } else {
-                                        bool res = await _db.updateItem(
+                                        bool res = await _db.updateFav(
                                             userId: result.uid.toString(),
                                             itemID: listData[index]['itemID'],
-                                            quantity: listData[index]
-                                                ['counter']);
-                                        print(res);
-                                        // if (res == true) {
-                                        //   await showDialog(
-                                        //       context: context,
-                                        //       builder: (context) {
-                                        //         return AlertDialog(
-                                        //           content: Text(
-                                        //               "Add item successfully"),
-                                        //         );
-                                        //       });
-                                        // } else {
-                                        //   await showDialog(
-                                        //       context: context,
-                                        //       builder: (context) {
-                                        //         return AlertDialog(
-                                        //           content: Text(
-                                        //               "Item already exists"),
-                                        //         );
-                                        //       });
-                                        //
-                                        Navigator.of(context).pop();
+                                            favorite: listData[index]
+                                                ['favorite']);
 
-                                        Navigator.pushReplacementNamed(
-                                            context, '/${widget.category}');
-                                        setState(() {
-                                          for (var map in listData) {
-                                            map.remove(
-                                                "counter"); // remove the "counter" key-value pair from each map
-                                          }
-                                        });
-                                      }
-                                      // Handle Ok button press
-                                    },
-                                  ),
-                                  TextButton(
-                                      child: Text(
-                                        itemmock[index]['isFav'] == null ||
-                                                itemmock[index]['isFav'] ==
-                                                    false
-                                            ? 'Add to Favorites'
-                                            : 'Unfavorite',
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          itemmock[index]['isFav'] =
-                                              !itemmock[index]['isFav'];
-                                          print(itemmock[index]['isFav']);
-                                        });
                                         Navigator.of(context).pop();
                                         Navigator.pushReplacementNamed(
                                             context, '/${widget.category}');
-                                      }),
-                                ],
-                              )));
-                    },
-                  );
-                },
-              ));
-            }
+                                      }
+                                    }),
+                              ],
+                            )));
+                  },
+                );
+              },
+            ));
           },
         ));
   }
