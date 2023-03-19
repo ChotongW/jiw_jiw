@@ -46,11 +46,13 @@ class _SearchForDelState extends State<SearchForDel> {
       // print(data.runtimeType);
       data?.forEach((key, value) {
         // print(key);
+        value["itemID"] = key;
         listRes.add(value);
-        value.forEach((key, value) {
-          // print(value);
-        });
       });
+      for (var map in listRes) {
+        map["counter"] =
+            map['quantity']; // initialize the counter to 0 for each map
+      }
       // print(listRes);
       setState(() {
         // print(listRes);
@@ -98,19 +100,18 @@ class _SearchForDelState extends State<SearchForDel> {
             SizedBox(
               width: 10,
             ),
-            Text(listData[index]['quantity'].toString()),
+            Text(listData[index]['price'].toString()),
             SizedBox(
               width: 1000,
             ),
           ]),
-          //subtitle: Text(listData[index]['quantity'].toString()),
+          subtitle: Text("itemID: ${listData[index]['itemID']}"),
           trailing: Wrap(children: [
             Text(listData[index]['quantity'].toString()),
             SizedBox(
               width: 10,
             ),
           ]),
-
           onTap: () {
             showDialog(
               context: context,
@@ -126,34 +127,34 @@ class _SearchForDelState extends State<SearchForDel> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: <Widget>[
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.remove_circle,
-                                      color: Colors.red,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        if (_counter > 1) {
-                                          _counter--;
-                                        }
-                                      });
-                                    },
-                                  ),
+                                  // IconButton(
+                                  //   icon: Icon(
+                                  //     Icons.remove_circle,
+                                  //     color: Colors.red,
+                                  //   ),
+                                  //   onPressed: () {
+                                  //     setState(() {
+                                  //       if (_counter > 1) {
+                                  //         _counter--;
+                                  //       }
+                                  //     });
+                                  //   },
+                                  // ),
                                   Text(
-                                    'Current value: $_counter',
+                                    'Current stocks: ${listData[index]['counter']}',
                                     style: TextStyle(fontSize: 20),
                                   ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.add_circle,
-                                      color: Colors.green,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _counter++;
-                                      });
-                                    },
-                                  ),
+                                  // IconButton(
+                                  //   icon: Icon(
+                                  //     Icons.add_circle,
+                                  //     color: Colors.green,
+                                  //   ),
+                                  //   onPressed: () {
+                                  //     setState(() {
+                                  //       _counter++;
+                                  //     });
+                                  //   },
+                                  // ),
                                 ],
                               ),
                             ],
@@ -166,10 +167,39 @@ class _SearchForDelState extends State<SearchForDel> {
                               },
                             ),
                             TextButton(
-                              child: Text('Upadate Item'),
-                              onPressed: () {
+                              child: Text('Delete item'),
+                              onPressed: () async {
                                 // Handle Ok button press
-                                Navigator.of(context).pop();
+                                User? result = await _auth.currentUser;
+                                if (result == null) {
+                                  //null means unsuccessfull authentication
+                                  await showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          content:
+                                              Text('not found current user!'),
+                                        );
+                                      });
+
+                                  await Navigator.pushReplacementNamed(
+                                      context, '/auth');
+                                } else {
+                                  bool res = await _db.deleteItem(
+                                    userId: result.uid.toString(),
+                                    itemID: listData[index]['itemID'],
+                                  );
+                                  print(res);
+                                  Navigator.of(context).pop();
+                                  Navigator.pushReplacementNamed(
+                                      context, '/delete');
+                                  setState(() {
+                                    for (var map in listData) {
+                                      map.remove(
+                                          "counter"); // remove the "counter" key-value pair from each map
+                                    }
+                                  });
+                                }
                               },
                             ),
                           ],
