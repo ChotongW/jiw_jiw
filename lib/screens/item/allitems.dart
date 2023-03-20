@@ -216,26 +216,7 @@ class _allitemState extends State<allitem> {
                                           userId: result.uid.toString(),
                                           itemID: listData[index]['itemID'],
                                           quantity: listData[index]['counter']);
-                                      // print(res);
-                                      // if (res == true) {
-                                      //   await showDialog(
-                                      //       context: context,
-                                      //       builder: (context) {
-                                      //         return AlertDialog(
-                                      //           content: Text(
-                                      //               "Add item successfully"),
-                                      //         );
-                                      //       });
-                                      // } else {
-                                      //   await showDialog(
-                                      //       context: context,
-                                      //       builder: (context) {
-                                      //         return AlertDialog(
-                                      //           content: Text(
-                                      //               "Item already exists"),
-                                      //         );
-                                      //       });
-                                      //
+
                                       Navigator.of(context).pop();
 
                                       Navigator.pushReplacementNamed(
