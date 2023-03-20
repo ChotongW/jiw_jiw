@@ -150,6 +150,34 @@ class DatabaseService {
     }
   }
 
+  Future<Map?> getAllItems({
+    required String userId,
+  }) async {
+    try {
+      DatabaseReference _databaseReference =
+          database.ref("users/$userId").child("inventory");
+      // final listOfitem = _databaseReference.child(category);
+
+      final snapshot = await _databaseReference.get();
+      if (snapshot.exists) {
+        // Map<dynamic, dynamic> data = {};
+        Map<String, dynamic> _snapshotValue =
+            Map<String, dynamic>.from(snapshot.value as Map);
+        // _snapshotValue.forEach((key, value) {
+        //   print(key);
+        //   print(value);
+        // });
+
+        return _snapshotValue;
+      } else {
+        // print("null");
+        return null;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<bool> checkItemByName({
     required String userId,
     required String category,
