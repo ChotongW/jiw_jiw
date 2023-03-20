@@ -25,6 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Register'),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
