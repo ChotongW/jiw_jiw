@@ -114,17 +114,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 size: 80,
               ),
             ),
-            Card(
-              child: ListTile(
-                title: const Text('Dash board'),
-                leading: Icon(Icons.more_vert),
-                onTap: () {
-                  Navigator.pop(context, MaterialPageRoute(builder: (context) {
-                    return Stack();
-                  }));
-                },
-              ),
-            ),
+            // Card(
+            //   child: ListTile(
+            //     title: const Text('Dash board'),
+            //     leading: Icon(Icons.more_vert),
+            //     onTap: () {
+            //       Navigator.pop(context, MaterialPageRoute(builder: (context) {
+            //         return Stack();
+            //       }));
+            //     },
+            //   ),
+            // ),
             Card(
               child: ListTile(
                 title: const Text('Inventory'),
@@ -139,15 +139,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
-            Card(
-              child: ListTile(
-                title: const Text('Sell'),
-                leading: Icon(Icons.more_vert),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
+            // Card(
+            //   child: ListTile(
+            //     title: const Text('Sell'),
+            //     leading: Icon(Icons.more_vert),
+            //     onTap: () {
+            //       Navigator.pop(context);
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),
