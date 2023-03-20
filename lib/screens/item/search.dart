@@ -4,6 +4,7 @@ import '../../models/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../services/auth.dart';
+import '../appbar/appbar.dart';
 
 // List<dynamic> itemmock = [
 //   {"name": "banana", "price": "30", "quantity": "10", "isFav": false},
@@ -78,16 +79,16 @@ class _SearchState extends State<Search> {
     if (listData.isEmpty) {
       // Show a CircularProgressIndicator if the data is still being fetched
       return Scaffold(
-          appBar: AppBar(
-            title: Text(widget.category),
+          appBar: MyAppBar(
+            title: widget.category,
           ),
           body: Center(
             child: Text('no data found'),
           ));
     }
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.category),
+        appBar: MyAppBar(
+          title: widget.category,
         ),
         body: ListView.builder(
           scrollDirection: Axis.vertical,
