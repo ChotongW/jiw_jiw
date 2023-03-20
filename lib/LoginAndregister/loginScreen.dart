@@ -42,6 +42,19 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text('Login'),
       ),
       body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        color: Colors.red,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+              Color(0xff5ac18e),
+              Color(0x99ac18e),
+              Color(0xcc5ac18e),
+              Color(0xff5ac18e)
+            ])),
         padding: const EdgeInsets.all(20.0),
         child: Form(
             key: _key,
@@ -68,7 +81,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     onSaved: (String? email) {
                       profile.email = email!;
                     }),
-
                 TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Your Password',

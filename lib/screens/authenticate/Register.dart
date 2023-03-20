@@ -69,6 +69,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onSaved: (String? email) {
                       profile.email = email!;
                     }),
+                SizedBox(
+                  height: 10,
+                ),
                 TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Your Password',
@@ -87,10 +90,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 10,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    child: Text('Confirm'),
+                    child: Text(
+                      'Confirm',
+                      style: TextStyle(fontSize: 24),
+                    ),
                     onPressed: () async {
                       _key.currentState!.save();
                       try {
@@ -153,6 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Text(
                       'Cancel',
                       textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
                 ),

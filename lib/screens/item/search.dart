@@ -264,7 +264,7 @@ class _SearchState extends State<Search> {
                                       setState(() {
                                         listData[index]['favorite'] =
                                             !listData[index]['favorite'];
-                                        print(listData[index]['favorite']);
+                                        // print(listData[index]['favorite']);
                                       });
                                       User? result = await _auth.currentUser;
                                       if (result == null) {

@@ -51,9 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 10,
-                ),
                 TextFormField(
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Please enter Email'),
@@ -70,6 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onSaved: (String? email) {
                       profile.email = email!;
                     }),
+                SizedBox(height: 10),
                 TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Your Password',
@@ -88,10 +86,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 10,
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                    child: Text('Sign in'),
+                    child: Text(
+                      'Sign in',
+                      style: TextStyle(fontSize: 24),
+                    ),
                     onPressed: () async {
                       _key.currentState!.save();
                       try {
@@ -150,6 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Register',
                       textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
                 )

@@ -1,3 +1,5 @@
+import 'package:flutter_svg/svg.dart';
+
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -52,8 +54,41 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: MyAppBar(
         title: widget.title,
       ),
-      body: const Center(
-        child: Text('My Page!'),
+      body: Container(
+        padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            color: Color.fromARGB(255, 77, 207, 81).withOpacity(0.03),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50))),
+        child: Wrap(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFF9C00).withOpacity(0.12),
+                          shape: BoxShape.circle,
+                        ),
+                        child: SvgPicture.asset("assetName"),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
       drawer: Drawer(
         child: ListView(
@@ -74,7 +109,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              currentAccountPicture: FlutterLogo(),
+              currentAccountPicture: Icon(
+                Icons.person,
+                size: 80,
+              ),
             ),
             Card(
               child: ListTile(

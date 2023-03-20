@@ -72,6 +72,30 @@ class _StockState extends State<Stock> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
           child: InkWell(
             onTap: () {
+              Navigator.pushNamed(context, '/allitems');
+            },
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.store_mall_directory,
+                  size: 40,
+                ),
+                Text(
+                  'All items',
+                  style: TextStyle(fontSize: 15),
+                )
+              ],
+            )),
+          ),
+        ),
+        Card(
+          elevation: 10,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: InkWell(
+            onTap: () {
               Navigator.pushNamed(context, '/delete');
             },
             child: Center(
