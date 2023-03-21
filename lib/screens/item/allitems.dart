@@ -75,7 +75,7 @@ class _allitemState extends State<allitem> {
       // Show a CircularProgressIndicator if the data is still being fetched
       return Scaffold(
           appBar: MyAppBar(
-            title: "All items",
+            title: "All items", actions: [],
           ),
           body: Center(
             child: Text('no data found'),
@@ -83,7 +83,7 @@ class _allitemState extends State<allitem> {
     }
     return Scaffold(
         appBar: MyAppBar(
-          title: "All items",
+          title: "All items", actions: [],
         ),
         body: ListView.builder(
           scrollDirection: Axis.vertical,

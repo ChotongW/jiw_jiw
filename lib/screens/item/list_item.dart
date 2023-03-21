@@ -53,7 +53,7 @@ class _itemListState extends State<itemList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: "Category",
+        title: "Category", actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project_mobile_app/screens/appbar/theme.dart';
 import 'package:project_mobile_app/screens/item/allitems.dart';
 import 'package:project_mobile_app/screens/item/delete.dart';
 import 'package:project_mobile_app/screens/item/drink.dart';
@@ -13,6 +14,8 @@ import 'inventory.dart';
 import 'screens/authenticate/Login.dart';
 import 'screens/home/home.dart';
 import 'services/auth.dart';
+
+
 // import 'screens/wrapper.dart';
 // import 'package:firebase_database/firebase_database.dart';
 
@@ -30,7 +33,10 @@ class MyApp extends StatelessWidget {
   static const appTitle = 'jiw jiw local store';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    builder: (context, _) {
+      final themeProvider = Provider.of<ThemeProvider>(context);
     // return MaterialApp(
     //   title: appTitle,
     //   initialRoute: '/login',
@@ -98,8 +104,12 @@ class MyApp extends StatelessWidget {
           '/allitems': (context) => allitem(),
         },
         title: appTitle,
+        themeMode: themeProvider.themeMode,
+        theme: MyThemes.lightTheme,
+        darkTheme: MyThemes.darkTheme,
         // home: Wrapper(),
       ),
     );
   }
+  );
 }

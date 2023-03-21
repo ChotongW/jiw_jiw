@@ -80,7 +80,7 @@ class _SearchState extends State<Search> {
       // Show a CircularProgressIndicator if the data is still being fetched
       return Scaffold(
           appBar: MyAppBar(
-            title: widget.category,
+            title: widget.category, actions: [],
           ),
           body: Center(
             child: Text('no data found'),
@@ -88,7 +88,7 @@ class _SearchState extends State<Search> {
     }
     return Scaffold(
         appBar: MyAppBar(
-          title: widget.category,
+          title: widget.category, actions: [],
         ),
         body: ListView.builder(
           scrollDirection: Axis.vertical,

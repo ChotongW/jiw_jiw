@@ -1,9 +1,12 @@
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
+import '../../changetheme/changethemebutton.dart';
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
 import '../appbar/appbar.dart';
+import '../appbar/theme.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -17,6 +20,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
+    ?'DarkTheme'
+    :'LightTheme';
     return Scaffold(
       // appBar: AppBar(
       //   title: Text(widget.title),
@@ -24,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // ),
       appBar: MyAppBar(
         title: widget.title,
+         actions:[ChangeThemeButtonWidget(),]
       ),
       body: Container(
         padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),

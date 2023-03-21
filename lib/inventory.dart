@@ -15,7 +15,7 @@ class _StockState extends State<Stock> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: "Inventory",
+        title: "Inventory", actions: [],
       ),
       body: GridView.count(crossAxisCount: 2, children: [
         Card(

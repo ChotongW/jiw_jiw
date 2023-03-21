@@ -25,7 +25,7 @@ class _DrinkState extends State<Drink> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: "Drink",
+        title: "Drink", actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -40,7 +40,7 @@ class _deleteState extends State<delete> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: MyAppBar(
-          title: 'Delete items',
+          title: 'Delete items', actions: [],
         ),
         body: Column(
           children: <Widget>[

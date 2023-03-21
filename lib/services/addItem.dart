@@ -42,7 +42,7 @@ class _AddItemState extends State<AddItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: 'add item',
+        title: 'add item', actions: [],
       ),
       body: Container(
         padding: const EdgeInsets.all(20.0),
