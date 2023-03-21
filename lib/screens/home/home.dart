@@ -32,42 +32,61 @@ class _MyHomePageState extends State<MyHomePage> {
         title: widget.title,
          actions:[ChangeThemeButtonWidget(),]
       ),
-      body: Container(
-        padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Color.fromARGB(255, 77, 207, 81).withOpacity(0.03),
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50))),
-        child: Wrap(
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFFF9C00).withOpacity(0.12),
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset("assetName"),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+      body: ListView(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 15),
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20))),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [],
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: EdgeInsets.only(left: 3, bottom: 10),
+                  child: Text(
+                    'Welcome Back',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1,
+                      wordSpacing: 2,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 5, bottom: 20),
+                  width: 500,
+                  height: 55,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: TextField(
+                      decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Search here',
+                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
+                    prefix: Icon(
+                      Icons.search,
+                      size: 25,
+                    ),
+                  )),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
+
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
