@@ -41,6 +41,7 @@ dependencies:
   form_field_validator: ^1.1.0
   flutter_svg: ^1.1.0
   provider: ^6.0.5
+  flutter_image_slideshow: any
 
 dev_dependencies:
   flutter_test:

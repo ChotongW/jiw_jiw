@@ -26,7 +26,7 @@ class _MyAppBarState extends State<MyAppBar> {
       borderRadius: BorderRadius.circular(30.0),
       color: Theme.of(context).primaryColor,
       child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width * 0.15,
+        minWidth: MediaQuery.of(context).size.width * 0.10,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () async {
           try {

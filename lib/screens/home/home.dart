@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../changetheme/changethemebutton.dart';
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import '../appbar/appbar.dart';
 import '../appbar/theme.dart';
@@ -32,59 +33,36 @@ class _MyHomePageState extends State<MyHomePage> {
         title: widget.title,
          actions:[ChangeThemeButtonWidget(),]
       ),
-      body: ListView(
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 15),
-            decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20))),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: Center(
+        child: Row(
+          children: [
+            SizedBox(width: 60),
+            Ink.image(
+              image: NetworkImage(
+                'https://cdn.pixabay.com/photo/2020/11/20/17/15/local-store-5762254_1280.png'),
+                height: 500,
+                width: 500,
+                fit: BoxFit.cover,
+                ),
+               SizedBox(width: 50),
+            Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [],
-                ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: EdgeInsets.only(left: 3, bottom: 10),
-                  child: Text(
-                    'Welcome Back',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1,
-                      wordSpacing: 2,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 5, bottom: 20),
-                  width: 500,
-                  height: 55,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: TextField(
-                      decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Search here',
-                    hintStyle: TextStyle(color: Colors.black.withOpacity(0.5)),
-                    prefix: Icon(
-                      Icons.search,
-                      size: 25,
-                    ),
-                  )),
-                ),
-              ],
-            ),
-          ),
-        ],
+                Align(),
+                SizedBox(height: 200),
+                Text('Jiw Jiw Local Store',
+                style: TextStyle( fontSize: 50)),
+                SizedBox(height: 40),
+                Text('This application makes it easy for you to manage your stock.',
+                style: TextStyle( fontSize: 20)),
+                SizedBox(height: 40),
+                Text('You can delete, add and edit the products you want through this app.',
+                style: TextStyle( fontSize: 20)),
+                ],
+                )
+
+            
+          ],
+        ),
       ),
 
       drawer: Drawer(
