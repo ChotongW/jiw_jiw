@@ -14,6 +14,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../services/auth.dart';
 import '../appbar/appbar.dart';
 
+// -----------------------------------------------------------------------------
+// search
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for search items
+// it will get data from firebase and if it not same id items will not the same items
+// it will search name and show items detail
+
 class Search extends StatefulWidget {
   const Search({super.key, required this.category});
   final String category;

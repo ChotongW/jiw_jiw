@@ -12,6 +12,15 @@ import 'package:project_mobile_app/models/item.dart';
 import 'package:project_mobile_app/screens/item/searchForDel.dart';
 import '../appbar/appbar.dart';
 
+// -----------------------------------------------------------------------------
+// delete
+// -----------------------------------------------------------------------------
+//
+// The delete class is will get data from firebase
+// and it will display card of all item in catagory
+// after display we can write the name of item that we want to delete
+// and that item will be delete
+
 class delete extends StatefulWidget {
   const delete({super.key});
 

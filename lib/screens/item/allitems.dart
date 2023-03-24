@@ -22,7 +22,8 @@ import '../appbar/appbar.dart';
 //
 // The allitem class is will getdata from firebase
 // and it will check data is null or not
-// In hamberger will navigate to inventory
+// after checking it will display card of all items detail
+// the items that display will not filter
 
 class allitem extends StatefulWidget {
   const allitem({super.key});

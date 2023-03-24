@@ -1,15 +1,22 @@
 // -----------------------------------------------------------------------------
-// list_items.dart
+// list_item.dart
 // -----------------------------------------------------------------------------
 //
-// This file contains functions for show list of catagory
-// it will display catagory name
-// each catagory can cilck and it will navigate to their owns catagory
+// This file contains functions for display category from myProducts
+// after that it will display all catagory that we have
 
 import 'package:flutter/material.dart';
 import 'package:project_mobile_app/screens/item/search.dart';
 
 import '../appbar/appbar.dart';
+
+// -----------------------------------------------------------------------------
+// itemList
+// -----------------------------------------------------------------------------
+//
+// The itmeList class is will get category from the myProducts
+// and it will display card of all item in catagory
+// after display it can click for navigate to the category
 
 class itemList extends StatefulWidget {
   const itemList({super.key});
