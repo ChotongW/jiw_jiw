@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// Hone.dart
+// Home.dart
 // -----------------------------------------------------------------------------
 //
 // This file contains functions for display home page and hamberger
@@ -18,7 +18,7 @@ import '../appbar/appbar.dart';
 import '../appbar/theme.dart';
 
 // -----------------------------------------------------------------------------
-// Myhoepage
+// Myhomepage
 // -----------------------------------------------------------------------------
 //
 // The Myhoepage class is create Scaffold to display sizebox and drawer

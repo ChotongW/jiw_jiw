@@ -1,7 +1,6 @@
 // -----------------------------------------------------------------------------
 // search.dart
 //Thanadol Panya 630510623  (Feature should have: Favorite items)
-
 // -----------------------------------------------------------------------------
 //
 // This file contains functions for search items
@@ -18,12 +17,16 @@ import '../appbar/appbar.dart';
 
 // -----------------------------------------------------------------------------
 // search
+//Thanadol Panya 630510623  (Feature should have: Favorite items)
 // -----------------------------------------------------------------------------
 //
 // search class is will get data from firebase and for current user
 // it will search name and show items detail
 // in listviwe will return card to show
 // in every card we can incress or decress quntity of item
+// and in the card will clike to favorite items
+// and it will set state favorite from unfavorited to favorite
+// the color of icons will be changed to red
 
 class Search extends StatefulWidget {
   const Search({super.key, required this.category});
