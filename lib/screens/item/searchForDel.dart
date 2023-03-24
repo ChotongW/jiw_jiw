@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// searchForDel.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for search items in delete
+// it will get data from firebase and if for current user
+// it will search name and show items detail
+
 import 'package:flutter/material.dart';
 
 import '../../models/database.dart';

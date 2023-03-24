@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 //
 // This file contains functions for delete items in firebase
-// it will get data from firebase and if it not same id items will not the same
+// it will get data from firebase and for current user
 // And it will display all items with out filters and in every items can
 // incress or decress quantity and put favorite items on it
 

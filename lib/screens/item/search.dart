@@ -1,9 +1,11 @@
 // -----------------------------------------------------------------------------
 // search.dart
+//Thanadol Panya 630510623  (Feature should have: Favorite items)
+
 // -----------------------------------------------------------------------------
 //
 // This file contains functions for search items
-// it will get data from firebase and if it not same id items will not the same items
+// it will get data from firebase and for current user
 // it will search name and show items detail
 
 import 'package:flutter/material.dart';
@@ -18,9 +20,10 @@ import '../appbar/appbar.dart';
 // search
 // -----------------------------------------------------------------------------
 //
-// This file contains functions for search items
-// it will get data from firebase and if it not same id items will not the same items
+// search class is will get data from firebase and for current user
 // it will search name and show items detail
+// in listviwe will return card to show
+// in every card we can incress or decress quntity of item
 
 class Search extends StatefulWidget {
   const Search({super.key, required this.category});
@@ -79,6 +82,7 @@ class _SearchState extends State<Search> {
     // dynamic res = await _db.itemsbyCategory()
   }
 
+// get data and set initState
   void initState() {
     super.initState();
     // Initialize state variables here
