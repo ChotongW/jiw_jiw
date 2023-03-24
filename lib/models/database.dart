@@ -11,7 +11,7 @@ import 'package:firebase_database/firebase_database.dart';
 // DatabaseService
 // -----------------------------------------------------------------------------
 //
-// The LoginScreen class is create firebase database instance
+// The DatabaseService class is create firebase database instance
 // for CRUD operations in firebase real time database
 // we use this class as model for database part
 class DatabaseService {
