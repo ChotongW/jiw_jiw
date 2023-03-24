@@ -1,16 +1,24 @@
 // -----------------------------------------------------------------------------
-// list_items.dart
+// Wasin Wasantivong 630510614  (Feature should have: category items)
 // -----------------------------------------------------------------------------
 //
 // This file contains functions for show list of catagory
 // it will display catagory name
 // each catagory can cilck and it will navigate to their owns catagory
+// by route that we set in main.dart
+//each route will invoke search.dart that pass category as parmater
 
 import 'package:flutter/material.dart';
 import 'package:project_mobile_app/screens/item/search.dart';
 
 import '../appbar/appbar.dart';
 
+// -----------------------------------------------------------------------------
+// itemList
+// -----------------------------------------------------------------------------
+//
+// The itemList class is stateful widget class.
+// for use to display routes in category of itmes
 class itemList extends StatefulWidget {
   const itemList({super.key});
 
