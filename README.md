@@ -1,3 +1,7 @@
+# !!! Features changes !!!
+
+in file FeatureChangeReason.txt
+
 # project_mobile_app
 
 A new Flutter project.
