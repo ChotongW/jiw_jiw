@@ -18,6 +18,15 @@ List<dynamic> itemmock = [
   {"name": "Apple", "price": "20", "quantity": "10"}
 ];
 
+// -----------------------------------------------------------------------------
+// searchForDel
+// -----------------------------------------------------------------------------
+//
+// search class is will get data from firebase and for current user
+// it will search name and show items detail
+// in listviwe will return card to show
+// in every card we can incress or decress quntity of item
+
 class SearchForDel extends StatefulWidget {
   const SearchForDel({super.key, required this.category});
   final String category;

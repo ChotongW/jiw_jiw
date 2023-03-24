@@ -1,10 +1,3 @@
-// -----------------------------------------------------------------------------
-// additem.dart
-// -----------------------------------------------------------------------------
-//
-// This file contains functions for insert items in firebase
-// it will require to fill name,catagory type ,price,quantity
-// then it will add four of details to firebase
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
