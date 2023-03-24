@@ -3,7 +3,6 @@ import 'package:project_mobile_app/screens/appbar/theme.dart';
 import 'package:provider/provider.dart';
 import './theme.dart';
 import '../../services/auth.dart';
-import '';
 
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
