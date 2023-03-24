@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// Inventory.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for display inventory
+// in inventory will have four features to use
+// and every feature will navigate to their owns feature
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -15,7 +23,8 @@ class _StockState extends State<Stock> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: "Inventory", actions: [],
+        title: "Inventory",
+        actions: [],
       ),
       body: GridView.count(crossAxisCount: 2, children: [
         Card(

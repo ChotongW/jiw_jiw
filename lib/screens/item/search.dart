@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// search.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for search items
+// it will get data from firebase and if it not same id items will not the same items
+// it will search name and show items detail
+
 import 'package:flutter/material.dart';
 
 import '../../models/database.dart';
@@ -5,11 +13,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../services/auth.dart';
 import '../appbar/appbar.dart';
-
-// List<dynamic> itemmock = [
-//   {"name": "banana", "price": "30", "quantity": "10", "isFav": false},
-//   {"name": "Apple", "price": "20", "quantity": "10", "isFav": false}
-// ];
 
 class Search extends StatefulWidget {
   const Search({super.key, required this.category});
@@ -80,7 +83,8 @@ class _SearchState extends State<Search> {
       // Show a CircularProgressIndicator if the data is still being fetched
       return Scaffold(
           appBar: MyAppBar(
-            title: widget.category, actions: [],
+            title: widget.category,
+            actions: [],
           ),
           body: Center(
             child: Text('no data found'),
@@ -88,7 +92,8 @@ class _SearchState extends State<Search> {
     }
     return Scaffold(
         appBar: MyAppBar(
-          title: widget.category, actions: [],
+          title: widget.category,
+          actions: [],
         ),
         body: ListView.builder(
           scrollDirection: Axis.vertical,

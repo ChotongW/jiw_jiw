@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// Hone.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for display home page and hamberger
+// Home page will explain What is this app do
+// Hamberger will navigate to inventory
+
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +16,14 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import '../appbar/appbar.dart';
 import '../appbar/theme.dart';
+
+// -----------------------------------------------------------------------------
+// Myhoepage
+// -----------------------------------------------------------------------------
+//
+// The Myhoepage class is create Scaffold to display sizebox and drawer
+// drawer will display listview that have current user name and email
+// In hamberger will navigate to inventory
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -22,45 +38,43 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final text = Provider.of<ThemeProvider>(context).themeMode == ThemeMode.dark
-    ?'DarkTheme'
-    :'LightTheme';
+        ? 'DarkTheme'
+        : 'LightTheme';
     return Scaffold(
       // appBar: AppBar(
       //   title: Text(widget.title),
       //   actions: <Widget>[SignOut],
       // ),
-      appBar: MyAppBar(
-        title: widget.title,
-         actions:[ChangeThemeButtonWidget(),]
-      ),
+      appBar: MyAppBar(title: widget.title, actions: [
+        ChangeThemeButtonWidget(),
+      ]),
       body: Center(
         child: Row(
           children: [
             SizedBox(width: 60),
             Ink.image(
               image: NetworkImage(
-                'https://cdn.pixabay.com/photo/2020/11/20/17/15/local-store-5762254_1280.png'),
-                height: 500,
-                width: 500,
-                fit: BoxFit.cover,
-                ),
-               SizedBox(width: 50),
+                  'https://cdn.pixabay.com/photo/2020/11/20/17/15/local-store-5762254_1280.png'),
+              height: 500,
+              width: 500,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(width: 50),
             Column(
               children: [
                 Align(),
                 SizedBox(height: 200),
-                Text('Jiw Jiw Local Store',
-                style: TextStyle( fontSize: 50)),
+                Text('Jiw Jiw Local Store', style: TextStyle(fontSize: 50)),
                 SizedBox(height: 40),
-                Text('This application makes it easy for you to manage your stock.',
-                style: TextStyle( fontSize: 20)),
+                Text(
+                    'This application makes it easy for you to manage your stock.',
+                    style: TextStyle(fontSize: 20)),
                 SizedBox(height: 40),
-                Text('You can delete, add and edit the products you want through this app.',
-                style: TextStyle( fontSize: 20)),
-                ],
-                )
-
-            
+                Text(
+                    'You can delete, add and edit the products you want through this app.',
+                    style: TextStyle(fontSize: 20)),
+              ],
+            )
           ],
         ),
       ),

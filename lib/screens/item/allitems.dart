@@ -1,3 +1,12 @@
+// -----------------------------------------------------------------------------
+// allitems.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for display all items in firebase
+// it will get data from firebase and if it not same id items will not the same
+// And it will display all items with out filters and in every items can
+// incress or decress quantity and put favorite items on it
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -6,6 +15,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../../models/database.dart';
 import '../../services/auth.dart';
 import '../appbar/appbar.dart';
+
+// -----------------------------------------------------------------------------
+// Allitem
+// -----------------------------------------------------------------------------
+//
+// The allitem class is will getdata from firebase
+// and it will check data is null or not
+// In hamberger will navigate to inventory
 
 class allitem extends StatefulWidget {
   const allitem({super.key});
@@ -75,7 +92,8 @@ class _allitemState extends State<allitem> {
       // Show a CircularProgressIndicator if the data is still being fetched
       return Scaffold(
           appBar: MyAppBar(
-            title: "All items", actions: [],
+            title: "All items",
+            actions: [],
           ),
           body: Center(
             child: Text('no data found'),
@@ -83,7 +101,8 @@ class _allitemState extends State<allitem> {
     }
     return Scaffold(
         appBar: MyAppBar(
-          title: "All items", actions: [],
+          title: "All items",
+          actions: [],
         ),
         body: ListView.builder(
           scrollDirection: Axis.vertical,

@@ -1,3 +1,12 @@
+// -----------------------------------------------------------------------------
+// drink.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for display items which filter by category
+// it will get data from firebase and if it not same id items will not the same
+// And it will display items which we chooes catagory
+// we can incress or decress quantity and put favorite on items
+
 import 'package:flutter/material.dart';
 
 import '../appbar/appbar.dart';
@@ -25,7 +34,8 @@ class _DrinkState extends State<Drink> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: "Drink", actions: [],
+        title: "Drink",
+        actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

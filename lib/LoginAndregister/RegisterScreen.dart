@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:project_mobile_app/LoginAndregister/Sociallogin.dart';
 import 'package:project_mobile_app/models/profile.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -31,7 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   height: 10,
                 ),
-
                 TextFormField(
                     validator: MultiValidator([
                       RequiredValidator(errorText: 'Please enter Email'),
@@ -48,7 +46,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onSaved: (String? email) {
                       profile.email = email!;
                     }),
-
                 TextFormField(
                     decoration: InputDecoration(
                       hintText: 'Your Password',
@@ -81,7 +78,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(
                   height: 15,
                 ),
-                // SocailLogin()
               ],
             )),
       ),

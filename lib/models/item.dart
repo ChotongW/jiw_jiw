@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// item.dart
+// -----------------------------------------------------------------------------
+//
+// This file make objects for class to call items
+// which can get five requirements parameters name,catagory,price,quantity
+// and set favorite is fall
+
 class Item {
   String name;
   String category;

@@ -1,9 +1,15 @@
+// -----------------------------------------------------------------------------
+// delete.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for delete items in firebase
+// it will get data from firebase and if it not same id items will not the same
+// And it will display all items with out filters and in every items can
+// incress or decress quantity and put favorite items on it
+
 import 'package:flutter/material.dart';
-
 import 'package:project_mobile_app/models/item.dart';
-
 import 'package:project_mobile_app/screens/item/searchForDel.dart';
-
 import '../appbar/appbar.dart';
 
 class delete extends StatefulWidget {
@@ -40,7 +46,8 @@ class _deleteState extends State<delete> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: MyAppBar(
-          title: 'Delete items', actions: [],
+          title: 'Delete items',
+          actions: [],
         ),
         body: Column(
           children: <Widget>[

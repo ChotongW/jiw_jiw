@@ -1,11 +1,29 @@
-import 'package:form_field_validator/form_field_validator.dart';
+// -----------------------------------------------------------------------------
+// Login.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for login with email and password for user
+// And after user fill in email and password it will check
+// that have this user in firebase or not if it have
+// it will showDialog Login successfully and Navigator to home page
 
+import 'package:form_field_validator/form_field_validator.dart';
 import '../../models/profile.dart';
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'Register.dart';
+
+// -----------------------------------------------------------------------------
+// LoginScreen
+// -----------------------------------------------------------------------------
+//
+// The LoginScreen class is create textformfield 
+// textformfield will fill email and password for user
+// it also have validates for email and password 
+// and it will check email and password before
+// navigate to home page
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

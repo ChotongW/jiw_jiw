@@ -1,3 +1,12 @@
+// -----------------------------------------------------------------------------
+// Register.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for Register with email and password for user
+// And after user fill in email and password it will save on object in profile
+// actually handled through use of a special AlphaNum type, which was designed
+// after that it will save in firebase
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:project_mobile_app/models/database.dart';
@@ -7,6 +16,13 @@ import '../../models/profile.dart';
 import '../../services/auth.dart';
 import 'package:flutter/material.dart';
 
+// -----------------------------------------------------------------------------
+// RegisterScreen
+// -----------------------------------------------------------------------------
+//
+// The RegisterScreen class is create textformfield 
+// textformfield will fill email and password for user
+// it also have validates for email and password 
 class RegisterScreen extends StatefulWidget {
   final Function? register;
   const RegisterScreen({super.key, this.register});

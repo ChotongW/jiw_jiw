@@ -1,3 +1,11 @@
+// -----------------------------------------------------------------------------
+// list_items.dart
+// -----------------------------------------------------------------------------
+//
+// This file contains functions for show list of catagory
+// it will display catagory name
+// each catagory can cilck and it will navigate to their owns catagory
+
 import 'package:flutter/material.dart';
 import 'package:project_mobile_app/screens/item/search.dart';
 
@@ -53,7 +61,8 @@ class _itemListState extends State<itemList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        title: "Category", actions: [],
+        title: "Category",
+        actions: [],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
