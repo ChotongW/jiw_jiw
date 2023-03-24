@@ -1,7 +1,25 @@
+// -----------------------------------------------------------------------------
+// database.dart
+// -----------------------------------------------------------------------------
+//
+// This header file contains functions for efficiently connect with firebase realtime database.
+// for easily to use we crate class DatabaseService.
+
 import 'package:firebase_database/firebase_database.dart';
 
+// -----------------------------------------------------------------------------
+// DatabaseService
+// -----------------------------------------------------------------------------
+//
+// The LoginScreen class is create firebase database instance
+// for CRUD operations in firebase real time database
+// we use this class as model for database part
 class DatabaseService {
   final FirebaseDatabase database = FirebaseDatabase.instance;
+
+  // writeUser(userId,data)
+  // this function crate user profile from register.
+  // required string userId and Map of data that from profile model.
 
   void writeUser({
     required String userId,
@@ -18,6 +36,13 @@ class DatabaseService {
       rethrow;
     }
   }
+
+  // writeItem(userId,data)
+  // this function crate item profile that invoke from addItem.dart.
+  // required string userId and Map of data that from item model.
+  // before crate we must invoke checkItemByName
+  // for prevent data redundunt
+  // return status of created item
 
   Future<bool> writeItem({
     required String userId,
@@ -51,22 +76,27 @@ class DatabaseService {
     }
   }
 
-  Future<String> read({required String userId}) async {
-    try {
-      DatabaseReference _databaseReference = database.ref("users/$userId");
-      final snapshot = await _databaseReference.get();
-      if (snapshot.exists) {
-        Map<String, dynamic> _snapshotValue =
-            Map<String, dynamic>.from(snapshot.value as Map);
-        return _snapshotValue['name'] ?? '';
-      } else {
-        return '';
-      }
-    } catch (e) {
-      rethrow;
-    }
-  }
+  // old feature
+  // Future<String> read({required String userId}) async {
+  //   try {
+  //     DatabaseReference _databaseReference = database.ref("users/$userId");
+  //     final snapshot = await _databaseReference.get();
+  //     if (snapshot.exists) {
+  //       Map<String, dynamic> _snapshotValue =
+  //           Map<String, dynamic>.from(snapshot.value as Map);
+  //       return _snapshotValue['name'] ?? '';
+  //     } else {
+  //       return '';
+  //     }
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 
+  // updateItem(userId,itemID,quantity)
+  // this function update item data in database that invoke from search.dart.
+  // required string userId and itemID and int quality.
+  // return status of updated item
   Future<bool> updateItem(
       {required String userId,
       // required String category,
@@ -93,6 +123,10 @@ class DatabaseService {
     }
   }
 
+  // updateFav(userId,itemID,favorite)
+  // this function update item favorite data in database that invoke from search.dart.
+  // required string userId and itemID and bool favorite.
+  // return status of updated item
   Future<bool> updateFav(
       {required String userId,
       // required String category,
@@ -119,6 +153,11 @@ class DatabaseService {
     }
   }
 
+  // itemsbyCategory(userId,itemID)
+  // this function search items data that filter by category in database that invoke from search.dart.
+  // required string userId and category.
+  // return Map of item that filter by category
+  // if not have data return null
   Future<Map?> itemsbyCategory({
     required String userId,
     required String category,
@@ -150,6 +189,11 @@ class DatabaseService {
     }
   }
 
+  // getAllItems(userId)
+  // this function search all items in database that invoke from search.dart.
+  // required string userId.
+  // return Map of all item.
+  // if not have data return null
   Future<Map?> getAllItems({
     required String userId,
   }) async {
@@ -177,6 +221,11 @@ class DatabaseService {
       rethrow;
     }
   }
+
+  // checkItemByName(userId,category,itemName)
+  // this function search for item have this name in database that invoke from database.dart.
+  // required string userId, category,and itemName.
+  // return status that found item or not.
 
   Future<bool> checkItemByName({
     required String userId,
@@ -218,6 +267,12 @@ class DatabaseService {
       rethrow;
     }
   }
+
+  // getItemByID(userId,itemID)
+  // this function search for item by given itemID in database.
+  // required string userId and itemID.
+  // return Map of item that found.
+  // if not return null
 
   Future<Map?> getItemByID({
     required String userId,
@@ -268,6 +323,11 @@ class DatabaseService {
       rethrow;
     }
   }
+
+  // deleteItem(userId,itemID)
+  // this function delete item by given itemID in database.
+  // required string userId and itemID.
+  // return status of operation.
 
   Future<bool> deleteItem({
     required String userId,
