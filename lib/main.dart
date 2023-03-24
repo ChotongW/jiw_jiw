@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-<<<<<<< HEAD
       create: (context) => ThemeProvider(),
       builder: (context, _) {
         final themeProvider = Provider.of<ThemeProvider>(context);
@@ -106,88 +105,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeProvider.themeMode,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
-            // home: Wrapper(),
           ),
         );
       });
-=======
-    create: (context) => ThemeProvider(),
-    builder: (context, _) {
-      final themeProvider = Provider.of<ThemeProvider>(context);
-    // return MaterialApp(
-    //   title: appTitle,
-    //   initialRoute: '/login',
-    //   routes: {
-    //     '/login': (context) => const LoginScreen(),
-    //     '/home': (context) => const MyHomePage(
-    //           title: appTitle,
-    //         ),
-    //   },
-    //   home: LoginScreen(),
-    // );
-    return MultiProvider(
-      providers: [
-        Provider<AuthService>(
-          create: (_) => AuthService(),
-        ),
-        // StreamProvider<FirebaseUser?>(
-        //   create: (context) => context.read()<AuthService>().user,
-        //   initialData: null,
-        // ),
-        // StreamProvider<User?>.value(
-        //   value: AuthService().user,
-        //   // create: (context) => AuthService().user,
-        //   initialData: null,
-        // ),
-      ],
-      child: MaterialApp(
-        initialRoute: '/auth',
-        routes: {
-          '/auth': (context) => LoginScreen(),
-          '/home': (context) => MyHomePage(
-                title: appTitle,
-              ),
-          '/inventory': (context) => Stock(),
-          '/catagory': (context) => itemList(),
-          '/addItem': (context) => AddItem(),
-          '/drink': (context) => Search(
-                category: 'drink',
-              ),
-          '/fresh meal': (context) => Search(
-                category: 'fresh meal',
-              ),
-          '/snacks': (context) => Search(
-                category: 'snacks',
-              ),
-          '/frozen & processed food': (context) => Search(
-                category: 'frozen & processed food',
-              ),
-          '/pets': (context) => Search(
-                category: 'pets',
-              ),
-          '/household goods': (context) => Search(
-                category: 'household goods',
-              ),
-          '/shower': (context) => Search(
-                category: 'shower',
-              ),
-          '/mom and kids': (context) => Search(
-                category: 'mom and kids',
-              ),
-          '/fresh product': (context) => Search(
-                category: 'fresh product',
-              ),
-          '/delete': (context) => delete(),
-          '/allitems': (context) => allitem(),
-        },
-        title: appTitle,
-        themeMode: themeProvider.themeMode,
-        theme: MyThemes.lightTheme,
-        darkTheme: MyThemes.darkTheme,
-       
-      ),
-    );
-  }
-  );
->>>>>>> 8fb0bb8aefb5a2a10c8fa6a5cf1e739fc2e22efb
 }
